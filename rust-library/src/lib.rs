@@ -5,13 +5,6 @@ use libmathcat::{get_version, set_rules_dir, set_mathml, get_braille, errors_to_
 use libmathcat::errors::Error;
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathkat_MathKat_hello(env: JNIEnv, _obj: JObject, s: JString) -> jstring {
-    let input: String = env.get_string(s).expect("Could not get java string").into();
-    let output = env.new_string(format!("Hello, {}!", input)).expect("Could not create java string");
-    output.into_inner()
-}
-
-#[no_mangle]
 pub extern "system" fn Java_onl_mdw_mathkat_MathKat_getVersion(env: JNIEnv, _obj: JObject) -> jstring {
     let output = env.new_string(get_version()).expect("Could not create java string");
     output.into_inner()

@@ -26,10 +26,6 @@ class MathKatTest {
         MathKat.setRulesDir(System.getProperty("onl.mdw.mathkat.rulesDir"))
     }
     @Test
-    fun testGreeting() {
-        assertEquals("Hello, World!", MathKat.hello("World"))
-    }
-    @Test
     fun testGetVersion() {
         assertEquals("0.1.22", MathKat.getVersion())
     }
