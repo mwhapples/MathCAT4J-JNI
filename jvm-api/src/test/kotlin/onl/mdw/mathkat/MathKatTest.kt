@@ -41,7 +41,7 @@ class MathKatTest {
     @Test
     fun testReturnsWhenSetValidMathml() {
         val someMathml = "<math id='mkt-0'><mrow id='mkt-1'><mn id='mkt-2'>1</mn><mo id='mkt-3'>+</mo><mi id='mkt-4'>x</mi></mrow></math>"
-        val expectedMathml = " <math id='mkt-0'>\n" + 
+        val expectedMathml = " <math id='mkt-0'>\n" +
                 "  <mrow id='mkt-1'>\n" +
                 "    <mn id='mkt-2'>1</mn>\n" +
                 "    <mo id='mkt-3'>+</mo>\n" +
@@ -49,5 +49,12 @@ class MathKatTest {
                 "  </mrow>\n" +
                 " </math>\n"
         assertEquals(expectedMathml, MathKat.setMathml(someMathml))
+    }
+    @Test
+    fun testGetAllBraille() {
+        val mathml = "<math><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow></math>"
+        MathKat.setMathml(mathml)
+        val expected = "⠽⠀⠨⠅⠀⠭⠬⠆"
+        assertEquals(expected, MathKat.getBraille())
     }
 }
