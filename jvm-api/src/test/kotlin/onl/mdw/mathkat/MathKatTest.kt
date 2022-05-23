@@ -47,7 +47,13 @@ class MathKatTest {
         assertEquals(expectedMathml, MathKat.setMathml(someMathml))
     }
     @Test
-    fun testGetAllBraille() {
+    fun testSetAndGetPreference() {
+        assertEquals("100.0", MathKat.getPreference("Volume"))
+        MathKat.setPreference("Volume", "50")
+        assertEquals("50", MathKat.getPreference("Volume"))
+    }
+    @Test
+    fun testGetBrailleAll() {
         val mathml = "<math><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow></math>"
         MathKat.setMathml(mathml)
         val expected = "⠽⠀⠨⠅⠀⠭⠬⠆"
