@@ -17,17 +17,29 @@ rust {
     cargoInstallTargets.set(true)
     targets {
         if (buildAllPlatforms != null) {
-            create("win64") {
+            create("win-x64") {
                 target = "x86_64-pc-windows-gnu"
                 outputName = "mathkat64.dll"
             }
-            create("win32") {
+            create("win-x86") {
                 target = "i686-pc-windows-gnu"
                 outputName = "mathkat.dll"
             }
             create("linux-x64") {
                 target = "x86_64-unknown-linux-gnu"
                 outputName = "libmathkat64.so"
+            }
+            create("macOS-x64") {
+                target = "x86_64-apple-darwin"
+                outputName = "libmathkat64.dylib"
+                env += "CC" to "x86_64-apple-darwin20.4-clang"
+                env += "CXX" to "x86_64-apple-darwin20.4-clang++"
+            }
+            create("macOS-aarch64") {
+                target = "aarch64-apple-darwin"
+                outputName = "libmathkat64.dylib"
+                env += "CC" to "aarch64-apple-darwin20.4-clang"
+                env += "CXX" to "aarch64-apple-darwin20.4-clang++"
             }
         } else {
             this += defaultTarget()
