@@ -34,7 +34,7 @@ class MathKatTest {
     }
     @Test
     fun testGetVersion() {
-        assertEquals("0.1.22", MathKat.getVersion())
+        assertEquals("0.1.23", MathKat.getVersion())
     }
     @Test
     fun testSetInvalidMathml() {

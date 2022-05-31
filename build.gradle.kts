@@ -8,7 +8,7 @@
 
 subprojects {
     group = "onl.mdw"
-    version = "0.1.22.0-SNAPSHOT"
+    version = "0.1.23.0-SNAPSHOT"
     repositories {
         mavenCentral()
     }
