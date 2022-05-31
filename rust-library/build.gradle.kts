@@ -25,10 +25,12 @@ rust {
                 target = "i686-pc-windows-gnu"
                 outputName = "mathkat.dll"
             }
-        } else {
-            this += defaultTarget().apply {
-                command = "cargo"
+            create("linux-x64") {
+                target = "x86_64-unknown-linux-gnu"
+                outputName = "mathkat64.so"
             }
+        } else {
+            this += defaultTarget()
         }
     }
 }
