@@ -27,7 +27,7 @@ rust {
             }
             create("linux-x64") {
                 target = "x86_64-unknown-linux-gnu"
-                outputName = "mathkat64.so"
+                outputName = "libmathkat64.so"
             }
         } else {
             this += defaultTarget()
