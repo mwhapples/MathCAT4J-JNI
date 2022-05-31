@@ -54,7 +54,7 @@ fn get_string_or_throw(env: JNIEnv, result: Result<String, Error>) -> jstring {
     match result {
         Ok(s) => env.new_string(s).expect("Could not create Java String").into_inner(),
         Err(e) => {
-            env.throw_new("java/lang/RuntimeException", errors_to_string(&e));
+            let _ = env.throw_new("java/lang/RuntimeException", errors_to_string(&e));
             JObject::null().into_inner()
         }
     }
