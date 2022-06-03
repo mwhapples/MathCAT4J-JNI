@@ -33,6 +33,10 @@ rust {
                 target = "aarch64-unknown-linux-gnu"
                 outputName = "libmathkat64.so"
             }
+            create("linux-armhf") {
+                target = "arm-unknown-linux-gnueabihf"
+                outputName = "libmathkat.so"
+            }
             create("macOS-x64") {
                 target = "x86_64-apple-darwin"
                 outputName = "libmathkat64.dylib"
