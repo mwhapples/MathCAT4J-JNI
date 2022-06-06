@@ -5,11 +5,23 @@
  *
  * Copyright 2022 Michael Whapples
  */
+plugins {
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+}
 
-subprojects {
+allprojects {
     group = "onl.mdw"
     version = "0.1.23.0-SNAPSHOT"
     repositories {
         mavenCentral()
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
     }
 }

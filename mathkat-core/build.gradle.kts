@@ -48,19 +48,6 @@ rustImport {
 }
 
 publishing {
-    repositories {
-        if (version.toString().endsWith("SNAPSHOT")) {
-            maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
-                name = "sonatypeReleaseRepository"
-                credentials(PasswordCredentials::class)
-            }
-        } else {
-            maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                name = "sonatypeSnapshotRepository"
-                credentials(PasswordCredentials::class)
-            }
-        }
-    }
     publications {
         register<MavenPublication>("Maven") {
             from(components["java"])
