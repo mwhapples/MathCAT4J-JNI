@@ -43,6 +43,13 @@ val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
     archiveClassifier.set("html-doc")
 }
 
+val rulesZip by tasks.register<Zip>("rulesZip") {
+    from(layout.projectDirectory.dir("../MathCAT/Rules")) {
+        into("MathCAT/Rules")
+    }
+    archiveClassifier.set("rules")
+}
+
 rustImport {
     baseDir.set("/META-INF/native")
     layout.set("flat")
@@ -52,6 +59,7 @@ publishing {
     publications {
         register<MavenPublication>("Maven") {
             from(components["java"])
+            artifact(rulesZip)
             artifact(dokkaJavadocJar)
             artifact(dokkaHtmlJar)
             versionMapping {
