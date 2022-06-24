@@ -8,7 +8,7 @@
 
 use jni::JNIEnv;
 use jni::objects::{JObject, JString};
-use jni::sys::jstring;
+use jni::sys::{jboolean, jint, JNI_TRUE, jsize, jstring};
 use libmathcat::*;
 use libmathcat::errors::Error;
 
@@ -62,6 +62,18 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_getOverviewText(env: J
     get_string_or_throw(env, overview_result)
 }
 
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_doNavigateKeypress(env: JNIEnv, _obj: JObject, key: jint, shift_key: jboolean, control_key: jboolean, alt_key: jboolean, meta_key: jboolean) -> jstring {
+    let result = do_navigate_keypress(key as usize, shift_key == JNI_TRUE, control_key == JNI_TRUE, alt_key == JNI_TRUE, meta_key == JNI_TRUE);
+    get_string_or_throw(env, result)
+}
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_doNavigateCommand(env: JNIEnv, _obj: JObject, command: JString) -> jstring {
+    let command = env.get_string(command).expect("Could not get Java String for command").into();
+    let result = do_navigate_command(command);
+    get_string_or_throw(env, result)
+}
 fn get_string_or_throw(env: JNIEnv, result: Result<String, Error>) -> jstring {
     match result {
         Ok(s) => env.new_string(s).expect("Could not create Java String").into_inner(),

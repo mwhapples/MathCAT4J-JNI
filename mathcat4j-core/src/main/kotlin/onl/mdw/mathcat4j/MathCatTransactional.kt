@@ -35,6 +35,16 @@ private object MathCatImpl : MathCat {
 
     external override fun getOverviewText(): String
 
+    external override fun doNavigateKeypress(
+        key: Int,
+        shiftKey: Boolean,
+        controlKey: Boolean,
+        altKey: Boolean,
+        metaKey: Boolean
+    ): String
+
+    external override fun doNavigateCommand(command: String): String
+
     private fun extractLibrary(libraryResource: String): File? = try {
         Native.extractFromResourcePath("/META-INF/native/${System.mapLibraryName(libraryResource)}")
     } catch (e: IOException) {

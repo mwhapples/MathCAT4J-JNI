@@ -100,4 +100,22 @@ class MathCatTest {
         }
         assertEquals(expected, actual)
     }
+    @Test
+    fun testDoNavigateKeypress() {
+        val expected = "cannot move right, end of math;"
+        val actual = mathCAT {
+            setMathml(BASIC_MATHML)
+            doNavigateKeypress(39, false, false, false, false)
+        }
+        assertEquals(expected, actual)
+    }
+    @Test
+    fun testDoNavigateCommand() {
+        val expected = "cannot move right, end of math;"
+        val actual = mathCAT {
+            setMathml(BASIC_MATHML)
+            doNavigateCommand("MoveNext")
+        }
+        assertEquals(expected, actual)
+    }
 }

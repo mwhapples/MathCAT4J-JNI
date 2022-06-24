@@ -66,4 +66,24 @@ interface MathCat {
      * @return The spoken overview text of the MathML.
      */
     fun getOverviewText(): String
+
+    /**
+     * Perform navigation by keypress.
+     *
+     * @param key The keycode.
+     * @param shiftKey Whether shift is pressed.
+     * @param controlKey Whether control key is pressed.
+     * @param altKey Whether the alt key is pressed.
+     * @param metaKey Whether the meta key is pressed.
+     * @return The spoken text resulting from the navigation.
+     */
+    fun doNavigateKeypress(key: Int, shiftKey: Boolean, controlKey: Boolean, altKey: Boolean, metaKey: Boolean): String
+
+    /**
+     * Perform navigation based on a command.
+     *
+     * @param command The navigation command.
+     * @return The spoken text resulting from the navigation.
+     */
+    fun doNavigateCommand(command: String): String
 }
