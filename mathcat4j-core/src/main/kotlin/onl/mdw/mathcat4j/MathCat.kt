@@ -89,4 +89,5 @@ interface MathCat {
      */
     fun doNavigateCommand(command: String): String
     fun getNavigationMathml(): NavigationPosition
+    fun getNavigationMathmlId(): NavigationPosition
 }

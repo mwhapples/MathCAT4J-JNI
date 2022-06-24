@@ -137,4 +137,13 @@ class MathCatTest {
         }
         assertEquals(expected, actual)
     }
+    @Test
+    fun testGetNavigationMathmlId() {
+        val expected = NavigationPosition("n1", 0)
+        val actual = mathCAT {
+            setMathml(BASIC_MATHML)
+            getNavigationMathmlId()
+        }
+        assertEquals(expected, actual)
+    }
 }

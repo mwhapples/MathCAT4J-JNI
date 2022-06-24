@@ -7,8 +7,8 @@
  */
 
 use jni::JNIEnv;
-use jni::objects::{JClass, JObject, JString, JValue};
-use jni::sys::{jboolean, jint, JNI_TRUE, jobject, jsize, jstring};
+use jni::objects::{JObject, JString, JValue};
+use jni::sys::{jboolean, jint, JNI_TRUE, jobject, jstring};
 use libmathcat::*;
 use libmathcat::errors::Error;
 
@@ -78,6 +78,12 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_doNavigateCommand(env:
 #[no_mangle]
 pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_getNavigationMathml(env: JNIEnv, _obj: JObject) -> jobject {
     let result = get_navigation_mathml();
+    get_navigation_position_or_throw(env, result)
+}
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_getNavigationMathmlId(env: JNIEnv, _obj: JObject) -> jobject {
+    let result = get_navigation_mathml_id();
     get_navigation_position_or_throw(env, result)
 }
 
