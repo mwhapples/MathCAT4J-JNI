@@ -50,6 +50,18 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_getBraille(env: JNIEnv
     get_string_or_throw(env, braille_result)
 }
 
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_getSpokenText(env: JNIEnv, _obj: JObject) -> jstring {
+    let spoken_result = get_spoken_text();
+    get_string_or_throw(env, spoken_result)
+}
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_MathCatImpl_getOverviewText(env: JNIEnv, _obj: JObject) -> jstring {
+    let overview_result = get_overview_text();
+    get_string_or_throw(env, overview_result)
+}
+
 fn get_string_or_throw(env: JNIEnv, result: Result<String, Error>) -> jstring {
     match result {
         Ok(s) => env.new_string(s).expect("Could not create Java String").into_inner(),

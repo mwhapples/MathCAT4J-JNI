@@ -27,6 +27,9 @@ class MathCatRulesDirTests {
         mathCAT { setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
     }
 }
+
+const val BASIC_MATHML = "<math id=\"n1\"><mrow id=\"n2\"><mi id=\"n3\">y</mi><mo id=\"n4\">=</mo><mi id=\"n5\">x</mi><mo id=\"n6\">+</mo><mn id=\"n7\">2</mn></mrow></math>"
+
 class MathCatTest {
     @BeforeTest
     fun configureRules() {
@@ -65,11 +68,36 @@ class MathCatTest {
     }
     @Test
     fun testGetBrailleAll() {
-        val mathml = "<math><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mo>+</mo><mn>2</mn></mrow></math>"
         val expected = "⠽⠀⠨⠅⠀⠭⠬⠆"
         mathCAT {
-            setMathml(mathml)
+            setMathml(BASIC_MATHML)
             assertEquals(expected, getBraille())
         }
+    }
+    @Test
+    fun testGetBrailleForId() {
+        val expected = "⠽⠀⣨⣅⠀⠭⠬⠆"
+        mathCAT {
+            setMathml(BASIC_MATHML)
+            assertEquals(expected, getBraille("n4"))
+        }
+    }
+    @Test
+    fun testGetSpokenText() {
+        val expected = "y equals x plus 2"
+        val actual = mathCAT {
+            setMathml(BASIC_MATHML)
+            getSpokenText()
+        }
+        assertEquals(expected, actual)
+    }
+    @Test
+    fun testGetOverviewText() {
+        val expected = "y equals x plus 2"
+        val actual = mathCAT {
+            setMathml(BASIC_MATHML)
+            getOverviewText()
+        }
+        assertEquals(expected, actual)
     }
 }

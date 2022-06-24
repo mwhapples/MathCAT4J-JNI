@@ -52,4 +52,18 @@ interface MathCat {
      * @return The Braille of the requested element.
      */
     fun getBraille(navigationId: String = ""): String
+
+    /**
+     * Get the spoken text for the MathML which was set.
+     *
+     * @return The spoken text for the MathML.
+     */
+    fun getSpokenText(): String
+
+    /**
+     * Get the spoken overview text for the MathML which was set.
+     *
+     * @return The spoken overview text of the MathML.
+     */
+    fun getOverviewText(): String
 }

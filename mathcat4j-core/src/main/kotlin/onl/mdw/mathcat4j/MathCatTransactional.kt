@@ -31,6 +31,10 @@ private object MathCatImpl : MathCat {
 
     external override fun getBraille(navigationId: String): String
 
+    external override fun getSpokenText(): String
+
+    external override fun getOverviewText(): String
+
     private fun extractLibrary(libraryResource: String): File? = try {
         Native.extractFromResourcePath("/META-INF/native/${System.mapLibraryName(libraryResource)}")
     } catch (e: IOException) {
