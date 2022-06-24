@@ -5,7 +5,7 @@
  *
  * Copyright 2022 Michael Whapples
  */
-package onl.mdw.mathkat
+package onl.mdw.mathcat4j
 
 import java.io.File
 import kotlin.test.BeforeTest
@@ -14,7 +14,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 // Keep the setRulesDir tests separate, we don't need to have setRulesDir called before, and we probably want them separate in the reports as well.
-class MathKatRulesDirTests {
+class MathCatRulesDirTests {
     @Test
     fun testExceptionForInvalidRulesDirectory() {
         val invalidRulesDir = File(System.getProperty("onl.mdw.mathcat4j.testRulesDir"), "invalidDir").absolutePath
@@ -27,7 +27,7 @@ class MathKatRulesDirTests {
         MathKat.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir"))
     }
 }
-class MathKatTest {
+class MathCatTest {
     @BeforeTest
     fun configureRules() {
         MathKat.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir"))

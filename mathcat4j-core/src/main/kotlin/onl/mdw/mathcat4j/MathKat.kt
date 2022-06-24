@@ -5,7 +5,7 @@
  *
  * Copyright 2022 Michael Whapples
  */
-package onl.mdw.mathkat
+package onl.mdw.mathcat4j
 
 import com.sun.jna.Native
 import com.sun.jna.Platform
