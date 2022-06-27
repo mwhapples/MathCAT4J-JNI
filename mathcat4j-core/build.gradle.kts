@@ -71,9 +71,9 @@ publishing {
                 }
             }
             pom {
-                name.set("MathKat")
+                name.set("MathCAT4J")
                 description.set("Java bindings for MathCAT")
-                url.set("https://github.com/mwhapples/MathKat")
+                url.set("https://github.com/mwhapples/MathCAT4J")
                 licenses {
                     license {
                         name.set("Mozilla Public License 2.0")
@@ -88,9 +88,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/mwhapples/MathKat.git")
-                    developerConnection.set("scm:git:ssh://github.com:mwhapples/MathKat.git")
-                    url.set("https://github.com/mwhapples/MathKat")
+                    connection.set("scm:git:git://github.com/mwhapples/MathCAT4J.git")
+                    developerConnection.set("scm:git:ssh://github.com:mwhapples/MathCAT4J.git")
+                    url.set("https://github.com/mwhapples/MathCAT4J")
                 }
             }
         }
