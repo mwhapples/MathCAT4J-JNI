@@ -6,48 +6,16 @@
  * Copyright 2022 Michael Whapples
  */
 @file:JvmName("MathCatTransactional")
-package onl.mdw.mathcat4j
+package onl.mdw.mathcat4j.core
 
 import com.sun.jna.Native
 import com.sun.jna.Platform
+import onl.mdw.mathcat4j.api.MathCat
+import onl.mdw.mathcat4j.api.MathCatJni
 import java.io.File
 import java.io.IOException
 
-/**
- * Basic access to the MathCAT library.
- *
- * This object gives you access to the MathCAT functions. This API is designed to be basic, other libraries may build upon this to create higher-level APIs.
- */
-private object MathCatImpl : MathCat {
-    external override fun getVersion(): String
-
-    external override fun setRulesDir(dir: String)
-
-    external override fun getPreference(name: String): String
-
-    external override fun setPreference(name: String, value: String)
-
-    external override fun setMathml(mathmlStr: String): String
-
-    external override fun getBraille(navigationId: String): String
-
-    external override fun getSpokenText(): String
-
-    external override fun getOverviewText(): String
-
-    external override fun doNavigateKeypress(
-        key: Int,
-        shiftKey: Boolean,
-        controlKey: Boolean,
-        altKey: Boolean,
-        metaKey: Boolean
-    ): String
-
-    external override fun doNavigateCommand(command: String): String
-
-    external override fun getNavigationMathml(): NavigationNode
-
-    external override fun getNavigationMathmlId(): NavigationId
+private object MathCatImpl : MathCatJni() {
 
     private fun extractLibrary(libraryResource: String): File? = try {
         Native.extractFromResourcePath("/META-INF/native/${System.mapLibraryName(libraryResource)}")

@@ -5,8 +5,10 @@
  *
  * Copyright 2022 Michael Whapples
  */
-package onl.mdw.mathcat4j
+package onl.mdw.mathcat4j.core
 
+import onl.mdw.mathcat4j.api.NavigationId
+import onl.mdw.mathcat4j.api.NavigationNode
 import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -105,7 +107,7 @@ class MathCatTest {
         val expected = "cannot move right, end of math;"
         val actual = mathCAT {
             setMathml(BASIC_MATHML)
-            doNavigateKeypress(39, false, false, false, false)
+            doNavigateKeypress(39, altKey = false, controlKey = false, shiftKey = false, metaKey = false)
         }
         assertEquals(expected, actual)
     }

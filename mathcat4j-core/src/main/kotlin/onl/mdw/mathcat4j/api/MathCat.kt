@@ -5,7 +5,7 @@
  *
  * Copyright 2022 Michael Whapples
  */
-package onl.mdw.mathcat4j
+package onl.mdw.mathcat4j.api
 
 /**
  * Node based navigation position.
@@ -18,8 +18,8 @@ data class NavigationNode(val node: String, val offset: Int)
 /**
  * Node ID based navigation position.
  *
- * @param The ID of the navigation node.
- * @param The character offset from the node.
+ * @param id the ID of the navigation node.
+ * @param offset the character offset from the node.
  */
 data class NavigationId(val id: String, val offset: Int)
 
