@@ -21,7 +21,7 @@ class MathCatRulesDirTests {
     fun testExceptionForInvalidRulesDirectory() {
         val invalidRulesDir = File(System.getProperty("onl.mdw.mathcat4j.testRulesDir"), "invalidDir").absolutePath
         val exceptionMessage = assertFailsWith(RuntimeException::class) { mathCAT { setRulesDir(invalidRulesDir) } }
-        val expected = "MathCAT could not find a rules dir -- something failed in installation?\nCould not find rules dir in $invalidRulesDir or lacking permissions to read the dir!\n\n"
+        val expected = "Unable to find MathCAT Rules directory '$invalidRulesDir'\n"
         assertEquals(expected, exceptionMessage.message)
     }
     @Test
