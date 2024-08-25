@@ -11,7 +11,7 @@ plugins {
 
 allprojects {
     group = "onl.mdw"
-    version = "0.6.4-4"
+    version = "0.6.4-5"
     repositories {
         mavenCentral()
     }
