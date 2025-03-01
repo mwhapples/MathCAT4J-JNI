@@ -26,7 +26,7 @@ private object MathCatImpl : MathCatJni() {
     init {
         val baseLibName = "mathcat4j"
         val attemptLibraries = listOf("$baseLibName-${Platform.RESOURCE_PREFIX}", baseLibName)
-        val libraryFile = System.getProperty("mathcat.library.path")?.let { File(it) }?.takeIf { it.exists() } ?: attemptLibraries.firstNotNullOfOrNull(::extractLibrary) ?: throw java.lang.RuntimeException("Unable to extract library, tried ${attemptLibraries.joinToString()}")
+        val libraryFile = attemptLibraries.firstNotNullOfOrNull { System.getProperty("mathcat.library.path")?.let { mlp -> File(mlp, it) }?.takeIf { f -> f.exists() } ?: extractLibrary(it) } ?: throw java.lang.RuntimeException("Unable to extract library, tried ${attemptLibraries.joinToString()}")
         System.load(libraryFile.absolutePath)
         System.getProperty("onl.mdw.mathcat4j.rulesDir")?.let { setRulesDir(it) }
     }
