@@ -105,7 +105,7 @@ class MathCatTest {
     }
     @Test
     fun testDoNavigateKeypress() {
-        val expected = "cannot move right, end of math;"
+        val expected = "end of math"
         val actual = mathCAT {
             setMathml(BASIC_MATHML)
             doNavigateKeypress(39, altKey = false, controlKey = false, shiftKey = false, metaKey = false)
@@ -114,7 +114,7 @@ class MathCatTest {
     }
     @Test
     fun testDoNavigateCommand() {
-        val expected = "cannot move right, end of math;"
+        val expected = "end of math"
         val actual = mathCAT {
             setMathml(BASIC_MATHML)
             doNavigateCommand("MoveNext")
