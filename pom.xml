@@ -1,16 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>onl.mdw</groupId>
-  <artifactId>mathcat4j-parent</artifactId>
-  <version>${revision}${sha1}${changelist}</version>
-  <packaging>pom</packaging>
-  <name>MathCAT4J</name>
-  <properties>
-    <revision>0.6.8-1</revision>
-    <sha1/>
-    <changelist>-SNAPSHOT</changelist>
-  </properties>
-  <modules>
-    <module>mathcat4j-core</module>
-  </modules>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>onl.mdw</groupId>
+    <artifactId>mathcat4j-parent</artifactId>
+    <version>${revision}${sha1}${changelist}</version>
+    <packaging>pom</packaging>
+    <name>MathCAT4J</name>
+    <properties>
+        <revision>0.6.8-1</revision>
+        <sha1/>
+        <changelist>-SNAPSHOT</changelist>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jna.version>5.17.0</jna.version>
+        <kotlin.version>2.1.20</kotlin.version>
+        <kotlin.code.style>official</kotlin.code.style>
+        <dokka-maven-plugin.version>2.0.0</dokka-maven-plugin.version>
+        <rust-maven-plugin.version>1.2.0</rust-maven-plugin.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <junit-jupiter.version>5.12.2</junit-jupiter.version>
+    </properties>
+    <modules>
+        <module>mathcat4j-core</module>
+    </modules>
 </project>
