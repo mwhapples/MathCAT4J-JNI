@@ -1,0 +1,3 @@
+[build]
+# <pom.xml:parentDir>/target/rust-maven-plugin/mathcat4j-jni
+target-dir = "../../../../target/rust-maven-plugin/mathcat4j-jni"
