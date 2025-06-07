@@ -183,7 +183,7 @@
                                     </extraArgs>
                                 </configuration>
                             </execution>
-                            <!--<execution>
+                            <execution>
                                 <id>build-mathcat-jni-linux-x86</id>
                                 <goals>
                                     <goal>build</goal>
@@ -195,7 +195,7 @@
                                         <extraArg>&#45;&#45;target=i686-unknown-linux-gnu</extraArg>
                                     </extraArgs>
                                 </configuration>
-                            </execution>-->
+                            </execution>
                             <execution>
                                 <id>build-mathcat-jni-linux-aarch64</id>
                                 <goals>
@@ -315,6 +315,24 @@
                                         </resource>
                                     </resources>
                                     <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-x86-64</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-mathcat-jni-linux-x86</id>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/rust-maven-plugin/mathcat4j/i686-unknown-linux-gnu/release/</directory>
+                                            <includes>
+                                                <include>libmathcat4j.so</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-x86</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
