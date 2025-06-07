@@ -170,6 +170,58 @@
                                     </extraArgs>
                                 </configuration>
                             </execution>
+                            <execution>
+                                <id>build-mathcat-jni-linux-x86-64</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <path>src/main/rust/mathcat4j</path>
+                                    <release>true</release>
+                                    <extraArgs>
+                                        <extraArg>--target=x86_64-unknown-linux-gnu</extraArg>
+                                    </extraArgs>
+                                </configuration>
+                            </execution>
+                            <!--<execution>
+                                <id>build-mathcat-jni-linux-x86</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <path>src/main/rust/mathcat4j</path>
+                                    <release>true</release>
+                                    <extraArgs>
+                                        <extraArg>&#45;&#45;target=i686-unknown-linux-gnu</extraArg>
+                                    </extraArgs>
+                                </configuration>
+                            </execution>-->
+                            <execution>
+                                <id>build-mathcat-jni-linux-aarch64</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <path>src/main/rust/mathcat4j</path>
+                                    <release>true</release>
+                                    <extraArgs>
+                                        <extraArg>--target=aarch64-unknown-linux-gnu</extraArg>
+                                    </extraArgs>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-mathcat-jni-linux-arm</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <path>src/main/rust/mathcat4j</path>
+                                    <release>true</release>
+                                    <extraArgs>
+                                        <extraArg>--target=arm-unknown-linux-gnueabihf</extraArg>
+                                    </extraArgs>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
                     <plugin>
@@ -182,7 +234,7 @@
                                 <goals>
                                     <goal>copy-resources</goal>
                                 </goals>
-                                <phase>prepare-package</phase>
+                                <phase>process-classes</phase>
                                 <configuration>
                                     <resources>
                                         <resource>
@@ -200,7 +252,7 @@
                                 <goals>
                                     <goal>copy-resources</goal>
                                 </goals>
-                                <phase>prepare-package</phase>
+                                <phase>process-classes</phase>
                                 <configuration>
                                     <resources>
                                         <resource>
@@ -211,6 +263,60 @@
                                         </resource>
                                     </resources>
                                     <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/win32-x86</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-mathcat-jni-linux-x86-64</id>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/rust-maven-plugin/mathcat4j/x86_64-unknown-linux-gnu/release/</directory>
+                                            <includes>
+                                                <include>libmathcat4j.so</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-x86-64</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-mathcat-jni-linux-aarch64</id>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/rust-maven-plugin/mathcat4j/aarch64-unknown-linux-gnu/release/</directory>
+                                            <includes>
+                                                <include>libmathcat4j.so</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-aarch64</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-mathcat-jni-linux-arm</id>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/rust-maven-plugin/mathcat4j/arm-unknown-linux-gnueabihf/release/</directory>
+                                            <includes>
+                                                <include>libmathcat4j.so</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-arm</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
