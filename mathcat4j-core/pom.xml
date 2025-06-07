@@ -13,7 +13,7 @@
     <artifactId>mathcat4j-core</artifactId>
     <packaging>jar</packaging>
 
-    <name>mathcat4j-core</name>
+    <name>MathCAT4j core</name>
 
     <dependencies>
         <dependency>
