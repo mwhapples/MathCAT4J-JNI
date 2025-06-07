@@ -222,6 +222,40 @@
                                     </extraArgs>
                                 </configuration>
                             </execution>
+                            <execution>
+                                <id>build-mathcat-jni-darwin-x86-64</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <path>src/main/rust/mathcat4j</path>
+                                    <release>true</release>
+                                    <extraArgs>
+                                        <extraArg>--target=x86_64-apple-darwin</extraArg>
+                                    </extraArgs>
+                                    <environmentVariables>
+                                        <CC>o64-clang</CC>
+                                        <CXX>o64-clang++</CXX>
+                                    </environmentVariables>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>build-mathcat-jni-darwin-aarch64</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <path>src/main/rust/mathcat4j</path>
+                                    <release>true</release>
+                                    <extraArgs>
+                                        <extraArg>--target=aarch64-apple-darwin</extraArg>
+                                    </extraArgs>
+                                    <environmentVariables>
+                                        <CC>oa64-clang</CC>
+                                        <CXX>oa64-clang++</CXX>
+                                    </environmentVariables>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
                     <plugin>
@@ -317,6 +351,42 @@
                                         </resource>
                                     </resources>
                                     <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-arm</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-mathcat-jni-darwin-x86-64</id>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/rust-maven-plugin/mathcat4j/x86_64-apple-darwin/release/</directory>
+                                            <includes>
+                                                <include>libmathcat4j.dylib</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/darwin-x86-64</outputDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-mathcat-jni-darwin-aarch64</id>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/rust-maven-plugin/mathcat4j/aarch64-apple-darwin/release/</directory>
+                                            <includes>
+                                                <include>libmathcat4j.dylib</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/darwin-aarch64</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
