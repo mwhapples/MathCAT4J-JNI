@@ -8,30 +8,8 @@
 @file:JvmName("MathCatTransactional")
 package onl.mdw.mathcat4j.core
 
-import com.sun.jna.Native
-import com.sun.jna.Platform
 import onl.mdw.mathcat4j.api.MathCat
-import onl.mdw.mathcat4j.api.MathCatJni
-import java.io.File
-import java.io.IOException
 
-private object MathCatImpl : MathCatJni() {
-
-    private fun extractLibrary(libraryResource: String): File? = try {
-        Native.extractFromResourcePath("/onl/mdw/mathcat4j/${Platform.RESOURCE_PREFIX}/${System.mapLibraryName(libraryResource)}")
-    } catch (e: IOException) {
-        null
-    }
-
-    init {
-        val baseLibName = "mathcat4j"
-        val attemptLibraries = listOf(baseLibName)
-        val libraryFile = attemptLibraries.firstNotNullOfOrNull { System.getProperty("mathcat.library.path")?.let { mlp -> File(mlp, System.mapLibraryName(it)) }?.takeIf { f -> f.exists() } ?: extractLibrary(it) } ?: throw java.lang.RuntimeException("Unable to extract library, tried ${attemptLibraries.joinToString()}")
-        System.load(libraryFile.absolutePath)
-        System.getProperty("onl.mdw.mathcat4j.rulesDir")?.let { setRulesDir(it) }
-    }
-}
-
-fun <T> mathCAT(block: MathCat.() -> T): T = synchronized(MathCatImpl) {
-    MathCatImpl.block()
+fun <T> mathCAT(block: MathCat.() -> T): T = synchronized(MathCatImpl.INSTANCE) {
+    MathCatImpl.INSTANCE.block()
 }
