@@ -3,85 +3,77 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
- * Copyright 2022 Michael Whapples
+ * Copyright 2025 Michael Whapples
  */
-package onl.mdw.mathcat4j.api
-
-/**
- * Node based navigation position.
- *
- * @param node The node XML.
- * @param offset The character offset into the node.
- */
-data class NavigationNode(val node: String, val offset: Int)
-
-/**
- * Node ID based navigation position.
- *
- * @param id the ID of the navigation node.
- * @param offset the character offset from the node.
- */
-data class NavigationId(val id: String, val offset: Int)
+package onl.mdw.mathcat4j.api;
 
 /**
  * The MathCAT API.
  */
-interface MathCat {
+public interface MathCat {
     /**
      * Get the version of the MathCAT library.
      *
      * @return The MathCAT library version
      */
-    fun getVersion(): String
+    String getVersion();
     /**
      * Set the rules directory.
      *
      * Like with the MathCAT library, this should be the first function call you make when using the MathCAT library.
      * @param dir The directory containing the rules files.
      */
-    fun setRulesDir(dir: String)
+    void setRulesDir(String dir);
     /**
      * Get a preference.
      *
      * @param name The name of the preference.
      * @return The value of the preference.
      */
-    fun getPreference(name: String): String
+    String getPreference(String name);
     /**
      * Set a preference.
      *
      * @param name The name of the preference.
      * @param value The value to be set.
      */
-    fun setPreference(name: String, value: String)
+    void setPreference(String name, String value);
     /**
      * Set the MathML content.
      *
      * @param mathmlStr The MathML string.
      * @return The canonical MathML representation with IDs set on elements.
      */
-    fun setMathml(mathmlStr: String): String
+    String setMathml(String mathmlStr);
+    /**
+     * Get the Braille representing an element.
+     *
+     * @return The Braille of the requested element.
+     */
+    default String getBraille() {
+        return getBraille("");
+    }
     /**
      * Get the Braille representing an element.
      *
      * @param navigationId The ID of the element. Setting this to the empty string will get the Braille for the whole MathML.
      * @return The Braille of the requested element.
      */
-    fun getBraille(navigationId: String = ""): String
+    String getBraille(String navigationId);
 
     /**
      * Get the spoken text for the MathML which was set.
      *
      * @return The spoken text for the MathML.
      */
-    fun getSpokenText(): String
+    String getSpokenText();
 
     /**
      * Get the spoken overview text for the MathML which was set.
      *
      * @return The spoken overview text of the MathML.
      */
-    fun getOverviewText(): String
+    String getOverviewText();
 
     /**
      * Perform navigation by keypress.
@@ -93,7 +85,7 @@ interface MathCat {
      * @param metaKey Whether the meta key is pressed.
      * @return The spoken text resulting from the navigation.
      */
-    fun doNavigateKeypress(key: Int, shiftKey: Boolean, controlKey: Boolean, altKey: Boolean, metaKey: Boolean): String
+    String doNavigateKeypress(int key, boolean shiftKey, boolean controlKey, boolean altKey, boolean metaKey);
 
     /**
      * Perform navigation based on a command.
@@ -101,19 +93,19 @@ interface MathCat {
      * @param command The navigation command.
      * @return The spoken text resulting from the navigation.
      */
-    fun doNavigateCommand(command: String): String
+    String doNavigateCommand(String command);
 
     /**
      * Get the MathML of the current navigation.
      *
      * @return The navigation position containing the XML of the node.
      */
-    fun getNavigationMathml(): NavigationNode
+    NavigationNode getNavigationMathml();
 
     /**
      * Get the ID of the current navigation.
      *
      * @return The navigation position containing the node ID.
      */
-    fun getNavigationMathmlId(): NavigationId
+    NavigationId getNavigationMathmlId();
 }

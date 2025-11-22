@@ -108,7 +108,7 @@ class MathCatTest {
         val expected = "end of math"
         val actual = mathCAT {
             setMathml(BASIC_MATHML)
-            doNavigateKeypress(39, altKey = false, controlKey = false, shiftKey = false, metaKey = false)
+            doNavigateKeypress(39, false, false, false, false)
         }
         assertEquals(expected, actual)
     }
