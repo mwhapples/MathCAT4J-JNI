@@ -47,5 +47,5 @@ class MathCatImpl extends MathCatJni {
             return null;
         }
     }
-    static MathCat INSTANCE = new MathCatImpl();
+    final static MathCat INSTANCE = new MathCatImpl();
 }
