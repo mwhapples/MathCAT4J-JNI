@@ -14,6 +14,8 @@
     <packaging>jar</packaging>
 
     <name>MathCAT4j core</name>
+    <description>Core MathCAT library</description>
+    <url>https://github.com/mwhapples/MathCAT4J</url>
 
     <dependencies>
         <dependency>
