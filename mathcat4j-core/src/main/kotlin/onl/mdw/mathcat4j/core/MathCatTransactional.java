@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class MathCatTransactional {
     private MathCatTransactional() {}
-    public static <T> T mathCAT(Function<MathCat, T> block) {
+    public static <T> T mathCAT(Function<? super MathCat, ? extends T> block) {
         synchronized (MathCatImpl.INSTANCE) {
             return block.apply(MathCatImpl.INSTANCE);
         }

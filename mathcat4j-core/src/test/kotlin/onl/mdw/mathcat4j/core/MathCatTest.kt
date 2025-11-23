@@ -75,7 +75,7 @@ class MathCatTest {
         val expected = "⠽⠀⠨⠅⠀⠭⠬⠆"
         mathCAT {
             it.setMathml(BASIC_MATHML)
-            assertEquals(expected, it.getBraille())
+            assertEquals(expected, it.braille)
         }
     }
     @Test
