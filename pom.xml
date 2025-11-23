@@ -125,7 +125,7 @@
         <plugins>
             <plugin>
                 <groupId>org.jreleaser</groupId>
-                <artifactId>jreleaser</artifactId>
+                <artifactId>jreleaser-maven-plugin</artifactId>
                 <inherited>false</inherited>
                 <configuration>
                     <jreleaser>
