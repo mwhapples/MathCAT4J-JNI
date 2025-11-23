@@ -60,8 +60,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>
-                        <onl.mdw.mathcat4j.testRulesDir>${project.basedir}/../MathCAT/Rules
-                        </onl.mdw.mathcat4j.testRulesDir>
+                        <onl.mdw.mathcat4j.testRulesDir>${project.basedir}/../MathCAT/Rules</onl.mdw.mathcat4j.testRulesDir>
                         <onl.mdw.mathcat4j.testVersion>${project.version}</onl.mdw.mathcat4j.testVersion>
                     </systemPropertyVariables>
                 </configuration>
