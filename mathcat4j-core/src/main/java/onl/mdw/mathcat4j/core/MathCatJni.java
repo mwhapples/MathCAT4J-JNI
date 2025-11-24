@@ -28,6 +28,8 @@ public abstract class MathCatJni implements MathCat {
     @Override
     native public String setMathml(String mathmlStr);
     @Override
+    native public String getNavigationBraille();
+    @Override
     native public String getBraille(String navigationId);
     @Override
     native public String getSpokenText();
@@ -48,4 +50,6 @@ public abstract class MathCatJni implements MathCat {
     native public NavigationNode getNavigationMathml();
     @Override
     native public NavigationId getNavigationMathmlId();
+    @Override
+    native public void setNavigationNode(String id, int offset);
 }

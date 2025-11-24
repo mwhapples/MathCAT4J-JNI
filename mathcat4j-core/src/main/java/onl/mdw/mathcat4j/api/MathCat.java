@@ -62,6 +62,12 @@ public interface MathCat {
     String getBraille(String navigationId);
 
     /**
+     * Get the Braille for the current navigation node.
+     * @return The Braille at the current navigation position.
+     */
+    String getNavigationBraille();
+
+    /**
      * Get the spoken text for the MathML which was set.
      *
      * @return The spoken text for the MathML.
@@ -108,4 +114,11 @@ public interface MathCat {
      * @return The navigation position containing the node ID.
      */
     NavigationId getNavigationMathmlId();
+
+    /**
+     * Set the navigation node by id and offset.
+     * @param id     The id of the node.
+     * @param offset The offset within the node.
+     */
+    void setNavigationNode(String id, int offset);
 }
