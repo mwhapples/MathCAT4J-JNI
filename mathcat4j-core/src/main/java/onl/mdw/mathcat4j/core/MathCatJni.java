@@ -5,7 +5,11 @@
  *
  * Copyright 2022 Michael Whapples
  */
-package onl.mdw.mathcat4j.api;
+package onl.mdw.mathcat4j.core;
+
+import onl.mdw.mathcat4j.api.MathCat;
+import onl.mdw.mathcat4j.api.NavigationId;
+import onl.mdw.mathcat4j.api.NavigationNode;
 
 /**
  * Java side API for the JNI bindings to MathCAT.

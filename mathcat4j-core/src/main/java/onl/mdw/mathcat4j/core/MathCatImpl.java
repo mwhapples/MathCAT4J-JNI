@@ -10,7 +10,6 @@ package onl.mdw.mathcat4j.core;
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
 import onl.mdw.mathcat4j.api.MathCat;
-import onl.mdw.mathcat4j.api.MathCatJni;
 
 import java.io.File;
 import java.io.IOException;
