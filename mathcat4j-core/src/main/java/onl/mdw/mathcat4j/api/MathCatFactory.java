@@ -7,6 +7,13 @@
  */
 package onl.mdw.mathcat4j.api;
 
+/**
+ * Factory for creating MathCatManager instances.
+ */
 public interface MathCatFactory {
+    /**
+     * Create an instance of MathCatManager.
+     * @return A MathCatManager instance.
+     */
     MathCatManager create();
 }

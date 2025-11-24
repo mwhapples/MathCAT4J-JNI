@@ -12,6 +12,10 @@ import onl.mdw.mathcat4j.api.MathCatManager;
 
 import java.util.function.Function;
 
+/**
+ * A MathCatManager which uses the JNI bindings.
+ * This manager will ensure blocks are run synchronously as MathCAT is thought to not be thread safe.
+ */
 public class MathCatTransactional implements MathCatManager {
     private final MathCat impl = MathCatImpl.INSTANCE;
     private static final MathCatTransactional INSTANCE = new MathCatTransactional();
@@ -19,6 +23,13 @@ public class MathCatTransactional implements MathCatManager {
     public static <T> T mathCAT(Function<? super MathCat, ? extends T> block) {
         return INSTANCE.run(block);
     }
+
+    /**
+     * Run a block of code against MathCAT as a single transaction.
+     * @param block The block of code to be run.
+     * @return The return value from the block.
+     * @param <T> The type of the return value of the block.
+     */
     @Override
     public <T> T run(Function<? super MathCat, ? extends T> block) {
         synchronized (impl) {

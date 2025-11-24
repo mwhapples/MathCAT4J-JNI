@@ -9,6 +9,16 @@ package onl.mdw.mathcat4j.api;
 
 import java.util.function.Function;
 
+/**
+ * Manages access to MathCAT.
+ * Precisely what this does is implementation-dependent but may involve ensuring synchronous access.
+ */
 public interface MathCatManager {
+    /**
+     * Run a block of code with MathCAT.
+     * @param block The block of code to be run.
+     * @return The return value from the block.
+     * @param <T> The type returned by the block.
+     */
     <T> T run(Function<? super MathCat, ? extends T> block);
 }

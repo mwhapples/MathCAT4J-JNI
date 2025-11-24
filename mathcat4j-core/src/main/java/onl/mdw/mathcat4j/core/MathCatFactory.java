@@ -7,8 +7,16 @@
  */
 package onl.mdw.mathcat4j.core;
 
+/**
+ * Factory for creating MathCAT instances using the JNI bindings.
+ */
 public class MathCatFactory implements onl.mdw.mathcat4j.api.MathCatFactory {
     private static final MathCatTransactional MATHCAT_INSTANCE = new MathCatTransactional();
+
+    /**
+     * Create a MathCatTransactional instance using the JNI bindings.
+     * @return The MathCatTransactional instance.
+     */
     @Override
     public MathCatTransactional create() {
         return MATHCAT_INSTANCE;
