@@ -127,6 +127,41 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setNavigationNode(
     });
 }
 
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getBraillePosition(env: JNIEnv, _obj: JObject) -> jobject {
+    catch_unwind_to_exception(env, || {
+        let result = get_braille_position();
+        get_position_range_or_throw(env, "onl/mdw/mathcat4j/api/PositionRange", result)
+    })
+}
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationNodeFromBraillePosition(env: JNIEnv, _obj: JObject, position: jint) -> jobject {
+    catch_unwind_to_exception(env, || {
+        let result = get_navigation_node_from_braille_position(position as usize);
+        get_navigation_position_or_throw(env, "onl/mdw/mathcat4j/api/NavigationNode", result)
+    })
+}
+
+fn get_position_range_or_throw(env: JNIEnv, cls: &str, result: Result<(usize, usize), Error>) -> jobject {
+    let signature = "(I;I)V";
+    match result {
+        Ok((start, end)) => {
+            let arguments = &[JValue::from(jint::try_from(start).unwrap()), JValue::from(jint::try_from(end).unwrap())];
+            env.new_object(cls, signature, arguments).unwrap_or_else(|_| {
+                if !env.exception_check().unwrap() {
+                    let _ = env.throw_new("java/lang/RuntimeException", "Unknown error whilst creating object");
+                }
+                JObject::null()
+            }).into_inner()
+        },
+        Err(e) => {
+            let _ = env.throw_new("java/lang/RuntimeException", errors_to_string(&e));
+            JObject::null().into_inner()
+        }
+    }
+}
+
 fn get_navigation_position_or_throw(env: JNIEnv, cls: &str, result: Result<(String, usize), Error>) -> jobject {
     let signature = "(Ljava/lang/String;I)V";
     match result {

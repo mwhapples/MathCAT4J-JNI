@@ -121,4 +121,17 @@ public interface MathCat {
      * @param offset The offset within the node.
      */
     void setNavigationNode(String id, int offset);
+
+    /**
+     * Get the range of Braille positions for the current node.
+     * @return The range of the Braille positions.
+     */
+    PositionRange getBraillePosition();
+
+    /**
+     * Get the navigation node from the Braille position.
+     * @param position The Braille position to find the node.
+     * @return The navigation node relating to the position.
+     */
+    NavigationNode getNavigationNodeFromBraillePosition(int position);
 }

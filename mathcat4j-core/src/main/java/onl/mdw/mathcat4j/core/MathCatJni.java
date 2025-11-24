@@ -10,6 +10,7 @@ package onl.mdw.mathcat4j.core;
 import onl.mdw.mathcat4j.api.MathCat;
 import onl.mdw.mathcat4j.api.NavigationId;
 import onl.mdw.mathcat4j.api.NavigationNode;
+import onl.mdw.mathcat4j.api.PositionRange;
 
 /**
  * Java side API for the JNI bindings to MathCAT.
@@ -52,4 +53,8 @@ public abstract class MathCatJni implements MathCat {
     native public NavigationId getNavigationMathmlId();
     @Override
     native public void setNavigationNode(String id, int offset);
+    @Override
+    native public PositionRange getBraillePosition();
+    @Override
+    native public NavigationNode getNavigationNodeFromBraillePosition(int position);
 }
