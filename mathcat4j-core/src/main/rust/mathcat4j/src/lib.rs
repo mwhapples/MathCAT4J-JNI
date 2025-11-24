@@ -121,8 +121,8 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationMathm
 #[no_mangle]
 pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setNavigationNode(env: JNIEnv, _obj: JObject, id: JString, offset: jint) {
     catch_unwind_to_exception(env, || {
-        let idStr = env.get_string(id).expect("Could not get Java string for id").into();
-        set_navigation_node(idStr, offset as usize);
+        let id_str = env.get_string(id).expect("Could not get Java string for id").into();
+        let _ = set_navigation_node(id_str, offset as usize).or_else(|e| env.throw_new("java/lang/RuntimeException", errors_to_string(&e)));
         JObject::null().into_inner()
     });
 }
