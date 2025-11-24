@@ -8,14 +8,21 @@
 package onl.mdw.mathcat4j.core;
 
 import onl.mdw.mathcat4j.api.MathCat;
+import onl.mdw.mathcat4j.api.MathCatManager;
 
 import java.util.function.Function;
 
-public class MathCatTransactional {
-    private MathCatTransactional() {}
+public class MathCatTransactional implements MathCatManager {
+    private final MathCat impl = MathCatImpl.INSTANCE;
+    private static final MathCatTransactional INSTANCE = new MathCatTransactional();
+    @Deprecated
     public static <T> T mathCAT(Function<? super MathCat, ? extends T> block) {
-        synchronized (MathCatImpl.INSTANCE) {
-            return block.apply(MathCatImpl.INSTANCE);
+        return INSTANCE.run(block);
+    }
+    @Override
+    public <T> T run(Function<? super MathCat, ? extends T> block) {
+        synchronized (impl) {
+            return block.apply(impl);
         }
     }
 }

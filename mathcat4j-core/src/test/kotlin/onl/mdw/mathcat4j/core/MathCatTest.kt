@@ -9,26 +9,23 @@ package onl.mdw.mathcat4j.core
 
 import onl.mdw.mathcat4j.api.NavigationId
 import onl.mdw.mathcat4j.api.NavigationNode
-import onl.mdw.mathcat4j.core.MathCatTransactional.mathCAT
 import java.io.File
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertContains
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
+import kotlin.test.*
+
+private val mathCat = MathCatTransactional()
 
 // Keep the setRulesDir tests separate, we don't need to have setRulesDir called before, and we probably want them separate in the reports as well.
 class MathCatRulesDirTests {
     @Test
     fun testExceptionForInvalidRulesDirectory() {
         val invalidRulesDir = File(System.getProperty("onl.mdw.mathcat4j.testRulesDir"), "invalidDir").absolutePath
-        val exceptionMessage = assertFailsWith(RuntimeException::class) { mathCAT { it.setRulesDir(invalidRulesDir) } }
+        val exceptionMessage = assertFailsWith(RuntimeException::class) { mathCat.run { it.setRulesDir(invalidRulesDir) } }
         val expected = "set_rules_dir: could not canonicalize path $invalidRulesDir:"
         assertContains(exceptionMessage.message ?: "", expected)
     }
     @Test
     fun testSetRulesDirectoryCorrectlyDoesNotExcept() {
-        mathCAT { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
+        mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
     }
 }
 
@@ -37,16 +34,16 @@ const val BASIC_MATHML = "<math id=\"n1\"><mrow id=\"n2\"><mi id=\"n3\">y</mi><m
 class MathCatTest {
     @BeforeTest
     fun configureRules() {
-        mathCAT { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
+        mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
     }
     @Test
     fun testGetVersion() {
-        assertEquals(System.getProperty("onl.mdw.mathcat4j.testVersion").takeWhile { it != '-' }, mathCAT { it.getVersion() })
+        assertEquals(System.getProperty("onl.mdw.mathcat4j.testVersion").takeWhile { it != '-' }, mathCat.run { it.getVersion() })
     }
     @Test
     fun testSetInvalidMathml() {
         val mathml = "Some random string"
-        assertFailsWith(RuntimeException::class) { mathCAT { it.setMathml(mathml) } }
+        assertFailsWith(RuntimeException::class) { mathCat.run { it.setMathml(mathml) } }
     }
     @Test
     fun testReturnsWhenSetValidMathml() {
@@ -58,22 +55,22 @@ class MathCatTest {
                 "    <mi id='mkt-4'>x</mi>\n" +
                 "  </mrow>\n" +
                 " </math>\n"
-        assertEquals(expectedMathml, mathCAT { it.setMathml(someMathml) })
+        assertEquals(expectedMathml, mathCat.run { it.setMathml(someMathml) })
     }
     @Test
-    fun testSetAndGetPreference(): Unit = mathCAT {
+    fun testSetAndGetPreference(): Unit = mathCat.run {
         assertEquals("100.0", it.getPreference("Volume"))
         it.setPreference("Volume", "50")
         assertEquals("50", it.getPreference("Volume"))
     }
     @Test
-    fun testGetpreferenceInvalid() {
-        assertFailsWith(RuntimeException::class) { mathCAT { it.getPreference("SomeRandomInvalidPreference") } }
+    fun testGetPreferenceInvalid() {
+        assertFailsWith(RuntimeException::class) { mathCat.run { it.getPreference("SomeRandomInvalidPreference") } }
     }
     @Test
     fun testGetBrailleAll() {
         val expected = "⠽⠀⠨⠅⠀⠭⠬⠆"
-        mathCAT {
+        mathCat.run {
             it.setMathml(BASIC_MATHML)
             assertEquals(expected, it.braille)
         }
@@ -81,7 +78,7 @@ class MathCatTest {
     @Test
     fun testGetBrailleForId() {
         val expected = "⠽⠀⣨⣅⠀⠭⠬⠆"
-        mathCAT {
+        mathCat.run {
             it.setMathml(BASIC_MATHML)
             assertEquals(expected, it.getBraille("n4"))
         }
@@ -89,7 +86,7 @@ class MathCatTest {
     @Test
     fun testGetSpokenText() {
         val expected = "y is equal to x plus 2"
-        val actual = mathCAT {
+        val actual = mathCat.run {
             it.setMathml(BASIC_MATHML)
             it.getSpokenText()
         }
@@ -98,7 +95,7 @@ class MathCatTest {
     @Test
     fun testGetOverviewText() {
         val expected = "y is equal to x plus 2"
-        val actual = mathCAT {
+        val actual = mathCat.run {
             it.setMathml(BASIC_MATHML)
             it.getOverviewText()
         }
@@ -107,7 +104,7 @@ class MathCatTest {
     @Test
     fun testDoNavigateKeypress() {
         val expected = "end of math"
-        val actual = mathCAT {
+        val actual = mathCat.run {
             it.setMathml(BASIC_MATHML)
             it.doNavigateKeypress(39, false, false, false, false)
         }
@@ -116,7 +113,7 @@ class MathCatTest {
     @Test
     fun testDoNavigateCommand() {
         val expected = "end of math"
-        val actual = mathCAT {
+        val actual = mathCat.run {
             it.setMathml(BASIC_MATHML)
             it.doNavigateCommand("MoveNext")
         }
@@ -135,7 +132,7 @@ class MathCatTest {
                 "    </mrow>\n" +
                 "  </mrow>\n" +
                 " </math>\n", 0)
-        val actual = mathCAT {
+        val actual = mathCat.run {
             it.setMathml(BASIC_MATHML)
             it.getNavigationMathml()
         }
@@ -144,7 +141,7 @@ class MathCatTest {
     @Test
     fun testGetNavigationMathmlId() {
         val expected = NavigationId("n1", 0)
-        val actual = mathCAT {
+        val actual = mathCat.run {
             it.setMathml(BASIC_MATHML)
             it.getNavigationMathmlId()
         }
