@@ -17,6 +17,9 @@
     <description>Core MathCAT library</description>
     <url>https://github.com/mwhapples/MathCAT4J</url>
 
+    <properties>
+        <mathcat4j.jni.lib.directory>${project.build.directory}/classes/onl/mdw/mathcat4j</mathcat4j.jni.lib.directory>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>onl.mdw</groupId>
@@ -140,7 +143,7 @@
                                 <configuration>
                                     <path>src/main/rust/mathcat4j</path>
                                     <release>true</release>
-                                    <copyTo>${project.build.directory}/classes/onl/mdw/mathcat4j/</copyTo>
+                                    <copyTo>${mathcat4j.jni.lib.directory}/</copyTo>
                                     <copyWithPlatformDir>true</copyWithPlatformDir>
                                 </configuration>
                             </execution>
@@ -293,7 +296,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/win32-x86-64</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/win32-x86-64</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -311,7 +314,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/win32-x86</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/win32-x86</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -329,7 +332,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-x86-64</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/linux-x86-64</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -347,7 +350,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-x86</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/linux-x86</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -365,7 +368,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-aarch64</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/linux-aarch64</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -383,7 +386,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/linux-arm</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/linux-arm</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -401,7 +404,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/darwin-x86-64</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/darwin-x86-64</outputDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -419,7 +422,7 @@
                                             </includes>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${project.build.directory}/classes/onl/mdw/mathcat4j/darwin-aarch64</outputDirectory>
+                                    <outputDirectory>${mathcat4j.jni.lib.directory}/darwin-aarch64</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
