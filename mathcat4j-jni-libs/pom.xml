@@ -18,7 +18,7 @@
     <url>https://github.com/mwhapples/MathCAT4J</url>
 
     <properties>
-        <mathcat4j.jni.lib.directory>${project.build.directory}/classes/onl/mdw/mathcat4j</mathcat4j.jni.lib.directory>
+        <mathcat4j.jni.lib.directory>${project.build.directory}/classes/onl/mdw/mathcat4j/jni/libs</mathcat4j.jni.lib.directory>
     </properties>
     <dependencies>
         <dependency>

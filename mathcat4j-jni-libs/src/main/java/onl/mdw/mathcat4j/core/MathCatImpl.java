@@ -10,6 +10,7 @@ package onl.mdw.mathcat4j.core;
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
 import onl.mdw.mathcat4j.api.MathCat;
+import onl.mdw.mathcat4j.jni.libs.LibInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.util.stream.Stream;
 
 class MathCatImpl extends MathCatJni {
     private MathCatImpl() {
-        final List<String> baseLibName = List.of("mathcat4j");
+        final List<String> baseLibName = List.of(LibInfo.LIB_NAME);
         final File libraryFile = baseLibName.stream().flatMap(libName -> {
             String mlp = System.getProperty("mathcat.library.path");
             File libFile = null;
@@ -41,7 +42,7 @@ class MathCatImpl extends MathCatJni {
     }
     private File extractLibrary(String libraryResource) {
         try {
-            return Native.extractFromResourcePath(String.format("/onl/mdw/mathcat4j/%s/%s", Platform.RESOURCE_PREFIX, System.mapLibraryName(libraryResource)));
+            return Native.extractFromResourcePath(String.format("%s/%s/%s", LibInfo.PATH_PREFIX, Platform.RESOURCE_PREFIX, System.mapLibraryName(libraryResource)));
         } catch (IOException e) {
             return null;
         }
