@@ -44,6 +44,7 @@
     </properties>
     <modules>
         <module>mathcat4j-api</module>
+        <module>mathcat4j-jni</module>
         <module>mathcat4j-jni-libs</module>
     </modules>
     <dependencyManagement>
@@ -51,6 +52,11 @@
             <dependency>
                 <groupId>onl.mdw</groupId>
                 <artifactId>mathcat4j-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>onl.mdw</groupId>
+                <artifactId>mathcat4j-jni-libs</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

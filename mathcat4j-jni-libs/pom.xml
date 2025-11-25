@@ -13,67 +13,16 @@
     <artifactId>mathcat4j-jni-libs</artifactId>
     <packaging>jar</packaging>
 
-    <name>MathCAT4j core</name>
-    <description>Core MathCAT library</description>
+    <name>MathCAT4j JNI native libraries</name>
+    <description>Native libraries for the mathcat4j-jni module.</description>
     <url>https://github.com/mwhapples/MathCAT4J</url>
 
     <properties>
         <mathcat4j.jni.lib.directory>${project.build.directory}/classes/onl/mdw/mathcat4j/jni/libs</mathcat4j.jni.lib.directory>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>onl.mdw</groupId>
-            <artifactId>mathcat4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
-
         <plugins>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <systemPropertyVariables>
-                        <onl.mdw.mathcat4j.testRulesDir>${project.basedir}/../MathCAT/Rules</onl.mdw.mathcat4j.testRulesDir>
-                        <onl.mdw.mathcat4j.testVersion>${project.version}</onl.mdw.mathcat4j.testVersion>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
