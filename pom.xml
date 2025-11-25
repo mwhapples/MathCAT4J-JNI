@@ -44,7 +44,7 @@
     </properties>
     <modules>
         <module>mathcat4j-api</module>
-        <module>mathcat4j-core</module>
+        <module>mathcat4j-jni-libs</module>
     </modules>
     <dependencyManagement>
         <dependencies>

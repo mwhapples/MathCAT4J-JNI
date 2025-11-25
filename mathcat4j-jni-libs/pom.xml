@@ -10,7 +10,7 @@
         <version>${revision}${sha1}${changelist}</version>
     </parent>
 
-    <artifactId>mathcat4j-core</artifactId>
+    <artifactId>mathcat4j-jni-libs</artifactId>
     <packaging>jar</packaging>
 
     <name>MathCAT4j core</name>
