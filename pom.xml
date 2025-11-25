@@ -43,6 +43,7 @@
         <junit-jupiter.version>5.12.2</junit-jupiter.version>
     </properties>
     <modules>
+        <module>mathcat4j-api</module>
         <module>mathcat4j-core</module>
     </modules>
     <dependencyManagement>
