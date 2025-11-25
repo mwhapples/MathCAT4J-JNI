@@ -447,7 +447,7 @@ checksum = "90ed8c1e510134f979dbc4f070f87d4313098b704861a105fe34231c70a3901c"
 
 [[package]]
 name = "mathcat"
-version = "0.7.0"
+version = "0.7.2"
 dependencies = [
  "bitflags",
  "cfg-if",
@@ -467,7 +467,7 @@ dependencies = [
  "sxd-xpath",
  "unicode-script",
  "yaml-rust",
- "zip 4.6.1",
+ "zip 5.1.1",
 ]
 
 [[package]]
@@ -986,9 +986,9 @@ dependencies = [
 
 [[package]]
 name = "zip"
-version = "4.6.1"
+version = "5.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "caa8cd6af31c3b31c6631b8f483848b91589021b28fffe50adada48d4f4d2ed1"
+checksum = "2f852905151ac8d4d06fdca66520a661c09730a74c6d4e2b0f27b436b382e532"
 dependencies = [
  "arbitrary",
  "bzip2 0.6.1",
