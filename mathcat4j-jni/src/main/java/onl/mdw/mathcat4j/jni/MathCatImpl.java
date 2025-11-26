@@ -7,44 +7,19 @@
  */
 package onl.mdw.mathcat4j.jni;
 
-import com.sun.jna.Native;
-import com.sun.jna.Platform;
 import onl.mdw.mathcat4j.api.MathCat;
-import onl.mdw.mathcat4j.jni.libs.LibInfo;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.stream.Stream;
 
 class MathCatImpl extends MathCatJni {
     private MathCatImpl() {
-        final List<String> baseLibName = List.of(LibInfo.LIB_NAME);
-        final File libraryFile = baseLibName.stream().flatMap(libName -> {
-            String mlp = System.getProperty("mathcat.library.path");
-            File libFile = null;
-            if (mlp != null) {
-                File f = new File(mlp, System.mapLibraryName(libName));
-                if (f.exists()) {
-                    libFile = f;
-                }
-            }
-            if (libFile == null) {
-                libFile = extractLibrary(libName);
-            }
-            return Stream.ofNullable(libFile);
-        }).findFirst().orElseThrow(() -> new RuntimeException(String.format("Unable to extract library, tried %s", String.join(", ", baseLibName))));
-        System.load(libraryFile.getAbsolutePath());
+        Stream.Builder<LibraryLoader> loaderBuilder = Stream.builder();
+        loaderBuilder.add(new MathcatLibraryPathLoader());
+        loaderBuilder.add(new JnaLibraryLoader());
+        loaderBuilder.build().filter(LibraryLoader::load).findFirst().orElseThrow(() -> new RuntimeException("Unable to load the native MathCAT library"));
         final String rulesDir = System.getProperty("onl.mdw.mathcat4j.rulesDir");
         if (rulesDir != null) {
             setRulesDir(rulesDir);
-        }
-    }
-    private File extractLibrary(String libraryResource) {
-        try {
-            return Native.extractFromResourcePath(String.format("%s/%s/%s", LibInfo.PATH_PREFIX, Platform.RESOURCE_PREFIX, System.mapLibraryName(libraryResource)));
-        } catch (IOException e) {
-            return null;
         }
     }
     final static MathCat INSTANCE = new MathCatImpl();
