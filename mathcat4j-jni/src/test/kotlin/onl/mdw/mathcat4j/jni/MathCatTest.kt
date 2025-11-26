@@ -5,7 +5,7 @@
  *
  * Copyright 2022 Michael Whapples
  */
-package onl.mdw.mathcat4j.core
+package onl.mdw.mathcat4j.jni
 
 import onl.mdw.mathcat4j.api.NavigationId
 import onl.mdw.mathcat4j.api.NavigationNode

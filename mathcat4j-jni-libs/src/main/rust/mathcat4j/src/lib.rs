@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
- * Copyright 2022 Michael Whapples
+ * Copyright 2022-2025 Michael Whapples
  */
 
 use std::panic;
@@ -14,12 +14,12 @@ use libmathcat::*;
 use libmathcat::errors::Error;
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getVersion(env: JNIEnv, _obj: JObject) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getVersion(env: JNIEnv, _obj: JObject) -> jstring {
     catch_unwind_to_exception(env, || env.new_string(get_version()).expect("Could not create java string").into_inner())
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setRulesDir(env: JNIEnv, _obj: JObject, dir: JString) {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_setRulesDir(env: JNIEnv, _obj: JObject, dir: JString) {
     catch_unwind_to_exception(env, || {
         let dir = env.get_string(dir).expect("Could not get string value of dir").into();
         let _ = set_rules_dir(dir).or_else(|e| env.throw_new("java/lang/RuntimeException", errors_to_string(&e)));
@@ -28,7 +28,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setRulesDir(env: J
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setPreference(env: JNIEnv, _obj: JObject, name: JString, value: JString) {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_setPreference(env: JNIEnv, _obj: JObject, name: JString, value: JString) {
     catch_unwind_to_exception(env, || {
         let name = env.get_string(name).expect("Could not get string for name").into();
         let value = env.get_string(value).expect("Could not get string for value").into();
@@ -38,7 +38,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setPreference(env:
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getPreference(env: JNIEnv, _obj: JObject, name: JString) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getPreference(env: JNIEnv, _obj: JObject, name: JString) -> jstring {
     catch_unwind_to_exception(env, || {
         let name = env.get_string(name).expect("Could not get string for name").into();
         let result = get_preference(name);
@@ -47,7 +47,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getPreference(env:
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setMathml(env: JNIEnv, _obj: JObject, mathml_str: JString) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_setMathml(env: JNIEnv, _obj: JObject, mathml_str: JString) -> jstring {
     catch_unwind_to_exception(env, || {
         let mathml_str = env.get_string(mathml_str).expect("Could not get string value of mathml_str").into();
         let canonical_mathml_result = set_mathml(mathml_str);
@@ -56,12 +56,12 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setMathml(env: JNI
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationBraille(env: JNIEnv, _obj: JObject) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getNavigationBraille(env: JNIEnv, _obj: JObject) -> jstring {
     catch_unwind_to_exception(env, || get_string_or_throw(env, get_navigation_braille()))
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getBraille(env: JNIEnv, _obj: JObject, navigation_id: JString) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getBraille(env: JNIEnv, _obj: JObject, navigation_id: JString) -> jstring {
     catch_unwind_to_exception(env, || {
         let navigation_id = env.get_string(navigation_id).expect("Could not get Java String for navigation_id").into();
         let braille_result = get_braille(navigation_id);
@@ -70,7 +70,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getBraille(env: JN
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getSpokenText(env: JNIEnv, _obj: JObject) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getSpokenText(env: JNIEnv, _obj: JObject) -> jstring {
     catch_unwind_to_exception(env, || {
         let spoken_result = get_spoken_text();
         get_string_or_throw(env, spoken_result)
@@ -78,7 +78,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getSpokenText(env:
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getOverviewText(env: JNIEnv, _obj: JObject) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getOverviewText(env: JNIEnv, _obj: JObject) -> jstring {
     catch_unwind_to_exception(env, || {
         let overview_result = get_overview_text();
         get_string_or_throw(env, overview_result)
@@ -86,7 +86,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getOverviewText(en
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_doNavigateKeypress(env: JNIEnv, _obj: JObject, key: jint, shift_key: jboolean, control_key: jboolean, alt_key: jboolean, meta_key: jboolean) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_doNavigateKeypress(env: JNIEnv, _obj: JObject, key: jint, shift_key: jboolean, control_key: jboolean, alt_key: jboolean, meta_key: jboolean) -> jstring {
     catch_unwind_to_exception(env, || {
         let result = do_navigate_keypress(key as usize, shift_key == JNI_TRUE, control_key == JNI_TRUE, alt_key == JNI_TRUE, meta_key == JNI_TRUE);
         get_string_or_throw(env, result)
@@ -94,7 +94,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_doNavigateKeypress
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_doNavigateCommand(env: JNIEnv, _obj: JObject, command: JString) -> jstring {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_doNavigateCommand(env: JNIEnv, _obj: JObject, command: JString) -> jstring {
     catch_unwind_to_exception(env, || {
         let command = env.get_string(command).expect("Could not get Java String for command").into();
         let result = do_navigate_command(command);
@@ -103,7 +103,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_doNavigateCommand(
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationMathml(env: JNIEnv, _obj: JObject) -> jobject {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getNavigationMathml(env: JNIEnv, _obj: JObject) -> jobject {
     catch_unwind_to_exception(env, || {
         let result = get_navigation_mathml();
         get_navigation_position_or_throw(env, "onl/mdw/mathcat4j/api/NavigationNode", result)
@@ -111,7 +111,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationMathm
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationMathmlId(env: JNIEnv, _obj: JObject) -> jobject {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getNavigationMathmlId(env: JNIEnv, _obj: JObject) -> jobject {
     catch_unwind_to_exception(env, || {
         let result = get_navigation_mathml_id();
         get_navigation_position_or_throw(env, "onl/mdw/mathcat4j/api/NavigationId", result)
@@ -119,7 +119,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationMathm
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setNavigationNode(env: JNIEnv, _obj: JObject, id: JString, offset: jint) {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_setNavigationNode(env: JNIEnv, _obj: JObject, id: JString, offset: jint) {
     catch_unwind_to_exception(env, || {
         let id_str = env.get_string(id).expect("Could not get Java string for id").into();
         let _ = set_navigation_node(id_str, offset as usize).or_else(|e| env.throw_new("java/lang/RuntimeException", errors_to_string(&e)));
@@ -128,7 +128,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_setNavigationNode(
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getBraillePosition(env: JNIEnv, _obj: JObject) -> jobject {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getBraillePosition(env: JNIEnv, _obj: JObject) -> jobject {
     catch_unwind_to_exception(env, || {
         let result = get_braille_position();
         get_position_range_or_throw(env, "onl/mdw/mathcat4j/api/PositionRange", result)
@@ -136,7 +136,7 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getBraillePosition
 }
 
 #[no_mangle]
-pub extern "system" fn Java_onl_mdw_mathcat4j_core_MathCatJni_getNavigationNodeFromBraillePosition(env: JNIEnv, _obj: JObject, position: jint) -> jobject {
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getNavigationNodeFromBraillePosition(env: JNIEnv, _obj: JObject, position: jint) -> jobject {
     catch_unwind_to_exception(env, || {
         let result = get_navigation_node_from_braille_position(position as usize);
         get_navigation_position_or_throw(env, "onl/mdw/mathcat4j/api/NavigationNode", result)

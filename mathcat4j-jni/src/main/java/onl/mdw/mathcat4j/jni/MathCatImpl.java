@@ -5,7 +5,7 @@
  *
  * Copyright 2025 Michael Whapples
  */
-package onl.mdw.mathcat4j.core;
+package onl.mdw.mathcat4j.jni;
 
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
