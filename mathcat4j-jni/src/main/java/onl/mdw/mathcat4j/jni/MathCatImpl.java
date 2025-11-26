@@ -9,14 +9,13 @@ package onl.mdw.mathcat4j.jni;
 
 import onl.mdw.mathcat4j.api.MathCat;
 
+import java.util.ServiceLoader;
 import java.util.stream.Stream;
 
 class MathCatImpl extends MathCatJni {
     private MathCatImpl() {
-        Stream.Builder<LibraryLoader> loaderBuilder = Stream.builder();
-        loaderBuilder.add(new MathcatLibraryPathLoader());
-        loaderBuilder.add(new JnaLibraryLoader());
-        loaderBuilder.build().filter(LibraryLoader::load).findFirst().orElseThrow(() -> new RuntimeException("Unable to load the native MathCAT library"));
+        ServiceLoader<LibraryLoader> loaderProviders = ServiceLoader.load(LibraryLoader.class);
+        Stream.concat(Stream.<LibraryLoader>of(new MathcatLibraryPathLoader()), loaderProviders.stream().map(ServiceLoader.Provider::get)).filter(LibraryLoader::load).findFirst().orElseThrow(() -> new RuntimeException("Unable to load the native MathCAT library"));
         final String rulesDir = System.getProperty("onl.mdw.mathcat4j.rulesDir");
         if (rulesDir != null) {
             setRulesDir(rulesDir);

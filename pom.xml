@@ -35,7 +35,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <jna.version>5.17.0</jna.version>
+        <jna.version>5.18.1</jna.version>
+        <jar-jni.version>1.2.0</jar-jni.version>
         <kotlin.version>2.2.21</kotlin.version>
         <kotlin.code.style>official</kotlin.code.style>
         <rust-maven-plugin.version>1.2.0</rust-maven-plugin.version>
@@ -46,6 +47,7 @@
         <module>mathcat4j-api</module>
         <module>mathcat4j-core</module>
         <module>mathcat4j-jni</module>
+        <module>mathcat4j-jni-loader-jna</module>
         <module>mathcat4j-jni-libs</module>
     </modules>
     <dependencyManagement>
@@ -53,6 +55,11 @@
             <dependency>
                 <groupId>onl.mdw</groupId>
                 <artifactId>mathcat4j-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>onl.mdw</groupId>
+                <artifactId>mathcat4j-jni</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -71,6 +78,11 @@
                 <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna</artifactId>
                 <version>${jna.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.questdb</groupId>
+                <artifactId>jar-jni</artifactId>
+                <version>${jar-jni.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>

@@ -23,10 +23,12 @@
         <dependency>
             <groupId>onl.mdw</groupId>
             <artifactId>mathcat4j-jni-libs</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
+            <groupId>org.questdb</groupId>
+            <artifactId>jar-jni</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

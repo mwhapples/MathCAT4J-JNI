@@ -9,11 +9,26 @@
         <version>${revision}${sha1}${changelist}</version>
     </parent>
 
-    <artifactId>mathcat4j-api</artifactId>
+    <artifactId>mathcat4j-jni-loader-jna</artifactId>
 
-    <name>MathCAT4J API</name>
-    <description>Common API for MathCAT from Java.</description>
+    <name>MathCAT4J JNI loader using JNA</name>
+    <description>Loader to extract JNI libraries using JNA.</description>
     <url>https://github.com/mwhapples/MathCAT4J</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>onl.mdw</groupId>
+            <artifactId>mathcat4j-jni</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>onl.mdw</groupId>
+            <artifactId>mathcat4j-jni-libs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
