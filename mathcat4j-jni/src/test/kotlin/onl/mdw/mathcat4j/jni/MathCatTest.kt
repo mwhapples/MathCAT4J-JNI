@@ -24,11 +24,6 @@ class MathCatTest {
         mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
     }
     @Test
-    fun testSetInvalidMathml() {
-        val mathml = "Some random string"
-        assertFailsWith(RuntimeException::class) { mathCat.run { it.setMathml(mathml) } }
-    }
-    @Test
     fun testReturnsWhenSetValidMathml() {
         val someMathml = "<math id='mkt-0'><mrow id='mkt-1'><mn id='mkt-2'>1</mn><mo id='mkt-3'>+</mo><mi id='mkt-4'>x</mi></mrow></math>"
         val expectedMathml = " <math id='mkt-0'>\n" +

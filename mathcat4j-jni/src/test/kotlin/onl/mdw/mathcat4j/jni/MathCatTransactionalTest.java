@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class MathCatTransactionalTest {
     private static final String BASIC_MATHML = "<math id=\"n1\"><mrow id=\"n2\"><mi id=\"n3\">y</mi><mo id=\"n4\">=</mo><mrow id=\"r0\"><mi id=\"n5\">x</mi><mo id=\"n6\">+</mo><mn id=\"n7\">2</mn></mrow></mrow></math>";
@@ -30,5 +31,12 @@ public class MathCatTransactionalTest {
     public void testGetVersion() {
         String expected = Arrays.stream(System.getProperty("onl.mdw.mathcat4j.testVersion").split("-")).findFirst().orElseThrow();
         assertThat(mathCat.run(MathCat::getVersion)).isEqualTo(expected);
+    }
+    @Test
+    public void testSetInvalidMathml() {
+        assertThatThrownBy(() -> mathCat.run(m -> {
+            m.setMathml("Some random string");
+            return null;
+        })).isInstanceOf(RuntimeException.class);
     }
 }
