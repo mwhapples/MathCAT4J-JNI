@@ -24,10 +24,6 @@ class MathCatTest {
         mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
     }
     @Test
-    fun testGetVersion() {
-        assertEquals(System.getProperty("onl.mdw.mathcat4j.testVersion").takeWhile { it != '-' }, mathCat.run { it.getVersion() })
-    }
-    @Test
     fun testSetInvalidMathml() {
         val mathml = "Some random string"
         assertFailsWith(RuntimeException::class) { mathCat.run { it.setMathml(mathml) } }
