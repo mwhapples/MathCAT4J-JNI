@@ -8,6 +8,8 @@
 package onl.mdw.mathcat4j.jni;
 
 import onl.mdw.mathcat4j.api.MathCat;
+import onl.mdw.mathcat4j.api.NavigationId;
+import onl.mdw.mathcat4j.api.NavigationNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -97,6 +99,50 @@ public class MathCatTransactionalTest {
         assertThat(mathCat.<String>run(m -> {
             m.setMathml(BASIC_MATHML);
             return m.getOverviewText();
+        })).isEqualTo(expected);
+    }
+    @Test
+    public void testDoNavigateKeypress() {
+        String expected = "end of math";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.doNavigateKeypress(39, false, false, false, false);
+        })).isEqualTo(expected);
+    }
+    @Test
+    public void testDoNavigateCommand() {
+        String expected = "end of math";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.doNavigateCommand("MoveNext");
+        })).isEqualTo(expected);
+    }
+    @Test
+    public void testGetNavigationMathml() {
+        NavigationNode expected = new NavigationNode("""
+                 <math id='n1'>
+                  <mrow id='n2'>
+                    <mi id='n3'>y</mi>
+                    <mo id='n4'>=</mo>
+                    <mrow id='r0'>
+                      <mi id='n5'>x</mi>
+                      <mo id='n6'>+</mo>
+                      <mn id='n7'>2</mn>
+                    </mrow>
+                  </mrow>
+                 </math>
+                """, 0);
+        assertThat(mathCat.<NavigationNode>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getNavigationMathml();
+        })).isEqualTo(expected);
+    }
+    @Test
+    public void testGetNavigationMathmlId() {
+        NavigationId expected = new NavigationId("n1", 0);
+        assertThat(mathCat.<NavigationId>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getNavigationMathmlId();
         })).isEqualTo(expected);
     }
 }
