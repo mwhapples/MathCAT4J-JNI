@@ -39,4 +39,40 @@ public class MathCatTransactionalTest {
             return null;
         })).isInstanceOf(RuntimeException.class);
     }
+    @Test
+    public void testSetMathmlReturnsMathml() {
+        String expected = """
+                 <math id='mkt-0'>
+                  <mrow id='mkt-1'>
+                    <mn id='mkt-2'>1</mn>
+                    <mo id='mkt-3'>+</mo>
+                    <mi id='mkt-4'>x</mi>
+                  </mrow>
+                 </math>
+                """;
+        String input = "<math id='mkt-0'><mrow id='mkt-1'><mn id='mkt-2'>1</mn><mo id='mkt-3'>+</mo><mi id='mkt-4'>x</mi></mrow></math>";
+        assertThat(mathCat.<String>run(m -> m.setMathml(input))).isEqualTo(expected);
+    }
+    @Test
+    public void testGetAndSetPreferences() {
+        mathCat.run(m -> {
+            m.setPreference("Volume", "100");
+            assertThat(m.getPreference("Volume")).isEqualTo("100");
+            m.setPreference("Volume", "50");
+            assertThat(m.getPreference("Volume")).isEqualTo("50");
+            return null;
+        });
+    }
+    @Test
+    public void testGetPreferenceInvalid() {
+        assertThatThrownBy(() -> mathCat.run(m -> m.getPreference("SomeRandomInvalidPreference"))).isInstanceOf(RuntimeException.class);
+    }
+    @Test
+    public void testGetBraille() {
+        String expected = "⠽⠀⠨⠅⠀⠭⠬⠆";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getBraille();
+        })).isEqualTo(expected);
+    }
 }

@@ -12,7 +12,6 @@ import onl.mdw.mathcat4j.api.NavigationNode
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 private val mathCat = MathCatTransactional()
 
@@ -22,36 +21,6 @@ class MathCatTest {
     @BeforeTest
     fun configureRules() {
         mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
-    }
-    @Test
-    fun testReturnsWhenSetValidMathml() {
-        val someMathml = "<math id='mkt-0'><mrow id='mkt-1'><mn id='mkt-2'>1</mn><mo id='mkt-3'>+</mo><mi id='mkt-4'>x</mi></mrow></math>"
-        val expectedMathml = " <math id='mkt-0'>\n" +
-                "  <mrow id='mkt-1'>\n" +
-                "    <mn id='mkt-2'>1</mn>\n" +
-                "    <mo id='mkt-3'>+</mo>\n" +
-                "    <mi id='mkt-4'>x</mi>\n" +
-                "  </mrow>\n" +
-                " </math>\n"
-        assertEquals(expectedMathml, mathCat.run { it.setMathml(someMathml) })
-    }
-    @Test
-    fun testSetAndGetPreference(): Unit = mathCat.run {
-        assertEquals("100.0", it.getPreference("Volume"))
-        it.setPreference("Volume", "50")
-        assertEquals("50", it.getPreference("Volume"))
-    }
-    @Test
-    fun testGetPreferenceInvalid() {
-        assertFailsWith(RuntimeException::class) { mathCat.run { it.getPreference("SomeRandomInvalidPreference") } }
-    }
-    @Test
-    fun testGetBrailleAll() {
-        val expected = "⠽⠀⠨⠅⠀⠭⠬⠆"
-        mathCat.run {
-            it.setMathml(BASIC_MATHML)
-            assertEquals(expected, it.braille)
-        }
     }
     @Test
     fun testGetBrailleForId() {
