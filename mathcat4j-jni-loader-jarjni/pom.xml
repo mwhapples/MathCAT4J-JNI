@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>onl.mdw</groupId>
+        <artifactId>mathcat4j-parent</artifactId>
+        <version>${revision}${sha1}${changelist}</version>
+    </parent>
+
+    <artifactId>mathcat4j-jni-loader-jarjni</artifactId>
+
+    <name>MathCAT4J JNI loader using QuestDB's jar-jni.</name>
+    <description>Loader to extract JNI libraries using QuestDB's jar-jni. This is a compact solution. If your project already depends upon JNA, then the JNA based loader may be more appropriate as it can use the existing JNA dependency.</description>
+    <url>https://github.com/mwhapples/MathCAT4J</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>onl.mdw</groupId>
+            <artifactId>mathcat4j-jni</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>onl.mdw</groupId>
+            <artifactId>mathcat4j-jni-libs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.questdb</groupId>
+            <artifactId>jar-jni</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

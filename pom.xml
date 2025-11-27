@@ -9,6 +9,7 @@
     <name>MathCAT4J</name>
     <description>Java bindings for MathCAT</description>
     <url>https://github.com/mwhapples/MathCAT4J</url>
+    <inceptionYear>2022</inceptionYear>
     <licenses>
         <license>
             <name>Mozilla Public License Version 2.0</name>
@@ -48,6 +49,7 @@
         <module>mathcat4j-core</module>
         <module>mathcat4j-jni</module>
         <module>mathcat4j-jni-loader-jna</module>
+        <module>mathcat4j-jni-loader-jarjni</module>
         <module>mathcat4j-jni-libs</module>
     </modules>
     <dependencyManagement>
