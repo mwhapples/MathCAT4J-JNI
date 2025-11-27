@@ -36,13 +36,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <jna.version>5.18.1</jna.version>
-        <jar-jni.version>1.2.0</jar-jni.version>
-        <kotlin.version>2.2.21</kotlin.version>
-        <kotlin.code.style>official</kotlin.code.style>
-        <rust-maven-plugin.version>1.2.0</rust-maven-plugin.version>
-        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
-        <junit-jupiter.version>5.12.2</junit-jupiter.version>
     </properties>
     <modules>
         <module>mathcat4j-api</module>
@@ -70,44 +63,32 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-bom</artifactId>
-                <version>${kotlin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna</artifactId>
-                <version>${jna.version}</version>
+                <version>5.18.1</version>
             </dependency>
             <dependency>
                 <groupId>org.questdb</groupId>
                 <artifactId>jar-jni</artifactId>
-                <version>${jar-jni.version}</version>
+                <version>1.2.0</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
-                <version>${junit-jupiter.version}</version>
+                <version>5.12.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>3.27.6</version>
-                <scope></scope>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-maven-plugin</artifactId>
-                    <version>${kotlin.version}</version>
-                </plugin>
                 <plugin>
                     <groupId>org.jreleaser</groupId>
                     <artifactId>jreleaser-maven-plugin</artifactId>
@@ -121,7 +102,7 @@
                 <plugin>
                     <groupId>org.questdb</groupId>
                     <artifactId>rust-maven-plugin</artifactId>
-                    <version>${rust-maven-plugin.version}</version>
+                    <version>1.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -136,7 +117,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
+                    <version>3.5.4</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
