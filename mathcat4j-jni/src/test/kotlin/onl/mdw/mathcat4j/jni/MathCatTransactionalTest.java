@@ -75,4 +75,28 @@ public class MathCatTransactionalTest {
             return m.getBraille();
         })).isEqualTo(expected);
     }
+    @Test
+    public void testGetBrailleForId() {
+        String expected = "⠽⠀⣨⣅⠀⠭⠬⠆";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getBraille("n4");
+        })).isEqualTo(expected);
+    }
+    @Test
+    public void testGetSpokenText() {
+        String expected = "y is equal to x plus 2";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getSpokenText();
+        })).isEqualTo(expected);
+    }
+    @Test
+    public void testGetOverviewText() {
+        String expected = "y is equal to x plus 2";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getOverviewText();
+        })).isEqualTo(expected);
+    }
 }

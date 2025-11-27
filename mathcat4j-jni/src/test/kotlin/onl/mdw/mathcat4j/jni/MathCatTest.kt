@@ -23,23 +23,6 @@ class MathCatTest {
         mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
     }
     @Test
-    fun testGetBrailleForId() {
-        val expected = "⠽⠀⣨⣅⠀⠭⠬⠆"
-        mathCat.run {
-            it.setMathml(BASIC_MATHML)
-            assertEquals(expected, it.getBraille("n4"))
-        }
-    }
-    @Test
-    fun testGetSpokenText() {
-        val expected = "y is equal to x plus 2"
-        val actual = mathCat.run {
-            it.setMathml(BASIC_MATHML)
-            it.getSpokenText()
-        }
-        assertEquals(expected, actual)
-    }
-    @Test
     fun testGetOverviewText() {
         val expected = "y is equal to x plus 2"
         val actual = mathCat.run {
