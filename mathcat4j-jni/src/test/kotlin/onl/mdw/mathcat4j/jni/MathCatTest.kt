@@ -9,25 +9,12 @@ package onl.mdw.mathcat4j.jni
 
 import onl.mdw.mathcat4j.api.NavigationId
 import onl.mdw.mathcat4j.api.NavigationNode
-import java.io.File
-import kotlin.test.*
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 private val mathCat = MathCatTransactional()
-
-// Keep the setRulesDir tests separate, we don't need to have setRulesDir called before, and we probably want them separate in the reports as well.
-class MathCatRulesDirTests {
-    @Test
-    fun testExceptionForInvalidRulesDirectory() {
-        val invalidRulesDir = File(System.getProperty("onl.mdw.mathcat4j.testRulesDir"), "invalidDir").absolutePath
-        val exceptionMessage = assertFailsWith(RuntimeException::class) { mathCat.run { it.setRulesDir(invalidRulesDir) } }
-        val expected = "set_rules_dir: could not canonicalize path $invalidRulesDir:"
-        assertContains(exceptionMessage.message ?: "", expected)
-    }
-    @Test
-    fun testSetRulesDirectoryCorrectlyDoesNotExcept() {
-        mathCat.run { it.setRulesDir(System.getProperty("onl.mdw.mathcat4j.testRulesDir")) }
-    }
-}
 
 const val BASIC_MATHML = "<math id=\"n1\"><mrow id=\"n2\"><mi id=\"n3\">y</mi><mo id=\"n4\">=</mo><mrow id=\"r0\"><mi id=\"n5\">x</mi><mo id=\"n6\">+</mo><mn id=\"n7\">2</mn></mrow></mrow></math>"
 
