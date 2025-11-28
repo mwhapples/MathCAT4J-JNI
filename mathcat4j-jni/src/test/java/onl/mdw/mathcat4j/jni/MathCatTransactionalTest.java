@@ -145,4 +145,9 @@ public class MathCatTransactionalTest {
             return m.getNavigationMathmlId();
         })).isEqualTo(expected);
     }
+    @Test
+    public void testGetSupportedBrailleCodes() {
+        String[] expected = new String[] {"ASCIIMath", "ASCIIMath-fi", "CMU", "LaTeX", "Nemeth", "Swedish", "UEB", "Vietnam"};
+        assertThat(mathCat.<String[]>run(m -> ((MathCatJni)m).getSupportedBrailleCodes())).isEqualTo(expected);
+    }
 }

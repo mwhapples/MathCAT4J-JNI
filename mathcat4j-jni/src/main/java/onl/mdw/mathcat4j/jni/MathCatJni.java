@@ -57,4 +57,5 @@ public abstract class MathCatJni implements MathCat {
     native public PositionRange getBraillePosition();
     @Override
     native public NavigationNode getNavigationNodeFromBraillePosition(int position);
+    native public String[] getSupportedBrailleCodes();
 }

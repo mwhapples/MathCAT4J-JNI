@@ -5,13 +5,13 @@
  *
  * Copyright 2022-2025 Michael Whapples
  */
-
-use std::panic;
-use jni::JNIEnv;
+use std::ops::Index;
 use jni::objects::{JObject, JString, JValue};
-use jni::sys::{jboolean, jint, JNI_TRUE, jobject, jstring};
-use libmathcat::*;
+use jni::sys::{jboolean, jint, jobject, jobjectArray, jsize, jstring, JNI_TRUE};
+use jni::JNIEnv;
 use libmathcat::errors::Error;
+use libmathcat::*;
+use std::panic;
 
 #[no_mangle]
 pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getVersion(env: JNIEnv, _obj: JObject) -> jstring {
@@ -141,6 +141,20 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getNavigationNodeFr
         let result = get_navigation_node_from_braille_position(position as usize);
         get_navigation_position_or_throw(env, "onl/mdw/mathcat4j/api/NavigationNode", result)
     })
+}
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getSupportedBrailleCodes(env: JNIEnv, _obj: JObject) -> jobjectArray {
+    catch_unwind_to_exception(env, || {
+        get_java_string_array(env, get_supported_braille_codes())
+    })
+}
+fn get_java_string_array(env: JNIEnv, vals: Vec<String>) -> jobjectArray {
+    let array = env.new_object_array(vals.len() as jsize, "java/lang/String", JObject::null()).expect("Problem creating array");
+    for i in 0..vals.len() {
+        env.set_object_array_element(array, i as jsize, env.new_string(vals.index(i)).expect("Problem creating java string")).expect("Unable to set array value.");
+    }
+    array
 }
 
 fn get_position_range_or_throw(env: JNIEnv, cls: &str, result: Result<(usize, usize), Error>) -> jobject {
