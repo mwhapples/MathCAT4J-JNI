@@ -140,4 +140,17 @@ public interface MathCat {
      * @return An array of the Braille codes supported.
      */
     String[] getSupportedBrailleCodes();
+
+    /**
+     * Get the supported languages.
+     * @return An array of the supported languages.
+     */
+    String[] getSupportedLanguages();
+
+    /**
+     * Get the supported speech styles for a given language.
+     * @param lang The language of the speech styles.
+     * @return An array of the supported speech styles.
+     */
+    String[] getSupportedSpeechStyles(String lang);
 }

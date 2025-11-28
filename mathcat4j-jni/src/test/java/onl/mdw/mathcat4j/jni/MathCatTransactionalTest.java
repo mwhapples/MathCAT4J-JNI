@@ -86,6 +86,14 @@ public class MathCatTransactionalTest {
         })).isEqualTo(expected);
     }
     @Test
+    public void testGetNavigationBraille() {
+        String expected = "⠽⠀⠨⠅⠀⠭⠬⠆";
+        assertThat(mathCat.<String>run(m -> {
+            m.setMathml(BASIC_MATHML);
+            return m.getNavigationBraille();
+        })).isEqualTo(expected);
+    }
+    @Test
     public void testGetSpokenText() {
         String expected = "y is equal to x plus 2";
         assertThat(mathCat.<String>run(m -> {
@@ -153,13 +161,11 @@ public class MathCatTransactionalTest {
     @Test
     public void testGetSupportedLanguages() {
         String[] expected = new String[] {"de", "en", "en-gb", "es", "fi", "id", "nb", "sv", "vi", "zh-tw"};
-        assertThat(mathCat.<String[]>run(m -> ((MathCatJni)m).getSupportedLanguages())).isEqualTo(expected);
+        assertThat(mathCat.<String[]>run(MathCat::getSupportedLanguages)).isEqualTo(expected);
     }
     @Test
     public void testGetSupportedSpeechStyles() {
         String[] expected = new String[] {"ClearSpeak", "SimpleSpeak"};
-        assertThat(mathCat.<String[]>run(m -> {
-            return ((MathCatJni)m).getSupportedSpeechStyles("en");
-        })).isEqualTo(expected);
+        assertThat(mathCat.<String[]>run(m -> m.getSupportedSpeechStyles("en"))).isEqualTo(expected);
     }
 }
