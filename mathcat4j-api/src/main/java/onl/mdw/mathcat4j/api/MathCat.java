@@ -134,4 +134,10 @@ public interface MathCat {
      * @return The navigation node relating to the position.
      */
     NavigationNode getNavigationNodeFromBraillePosition(int position);
+
+    /**
+     * Get the supported Braille codes.
+     * @return An array of the Braille codes supported.
+     */
+    String[] getSupportedBrailleCodes();
 }
