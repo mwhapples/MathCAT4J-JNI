@@ -149,6 +149,20 @@ pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getSupportedBraille
         get_java_string_array(env, get_supported_braille_codes())
     })
 }
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getSupportedLanguages(env: JNIEnv, _obj: JObject) -> jobjectArray {
+    catch_unwind_to_exception(env, || {
+        get_java_string_array(env, get_supported_languages())
+    })
+}
+
+#[no_mangle]
+pub extern "system" fn Java_onl_mdw_mathcat4j_jni_MathCatJni_getSupportedSpeechStyles(env: JNIEnv, _obj: JObject, lang: JString) -> jobjectArray {
+    catch_unwind_to_exception(env, || {
+        get_java_string_array(env, get_supported_speech_styles(env.get_string(lang).expect("Unable to get lang").into()))
+    })
+}
 fn get_java_string_array(env: JNIEnv, vals: Vec<String>) -> jobjectArray {
     let array = env.new_object_array(vals.len() as jsize, "java/lang/String", JObject::null()).expect("Problem creating array");
     for i in 0..vals.len() {

@@ -150,4 +150,16 @@ public class MathCatTransactionalTest {
         String[] expected = new String[] {"ASCIIMath", "ASCIIMath-fi", "CMU", "LaTeX", "Nemeth", "Swedish", "UEB", "Vietnam"};
         assertThat(mathCat.run(MathCat::getSupportedBrailleCodes)).isEqualTo(expected);
     }
+    @Test
+    public void testGetSupportedLanguages() {
+        String[] expected = new String[] {"de", "en", "en-gb", "es", "fi", "id", "nb", "sv", "vi", "zh-tw"};
+        assertThat(mathCat.<String[]>run(m -> ((MathCatJni)m).getSupportedLanguages())).isEqualTo(expected);
+    }
+    @Test
+    public void testGetSupportedSpeechStyles() {
+        String[] expected = new String[] {"ClearSpeak", "SimpleSpeak"};
+        assertThat(mathCat.<String[]>run(m -> {
+            return ((MathCatJni)m).getSupportedSpeechStyles("en");
+        })).isEqualTo(expected);
+    }
 }
