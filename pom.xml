@@ -6,8 +6,8 @@
     <artifactId>mathcat4j-jni-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
     <packaging>pom</packaging>
-    <name>MathCAT4J</name>
-    <description>Java bindings for MathCAT</description>
+    <name>MathCAT4J JNI</name>
+    <description>An imlementation of MathCAT4J using JNI bindings to MathCAT.</description>
     <url>https://github.com/mwhapples/MathCAT4J-JNI</url>
     <inceptionYear>2022</inceptionYear>
     <licenses>

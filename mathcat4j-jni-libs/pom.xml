@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>mathcat4j-jni-parent</artifactId>
         <groupId>onl.mdw</groupId>
+        <artifactId>mathcat4j-jni-parent</artifactId>
         <version>${revision}${sha1}${changelist}</version>
     </parent>
 
@@ -15,7 +15,7 @@
 
     <name>MathCAT4j JNI native libraries</name>
     <description>Native libraries for the mathcat4j-jni module.</description>
-    <url>https://github.com/mwhapples/MathCAT4J</url>
+    <url>https://github.com/mwhapples/MathCAT4J-JNI</url>
 
     <properties>
         <mathcat4j.jni.lib.directory>${project.build.directory}/classes/onl/mdw/mathcat4j/jni/libs</mathcat4j.jni.lib.directory>

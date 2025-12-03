@@ -13,7 +13,7 @@
 
     <name>MathCAT4J JNI loader using JNA</name>
     <description>Loader to extract JNI libraries using JNA.</description>
-    <url>https://github.com/mwhapples/MathCAT4J</url>
+    <url>https://github.com/mwhapples/MathCAT4J-JNI</url>
 
     <dependencies>
         <dependency>
