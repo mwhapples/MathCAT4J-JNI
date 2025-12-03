@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>mathcat4j-parent</artifactId>
+        <artifactId>mathcat4j-jni-parent</artifactId>
         <groupId>onl.mdw</groupId>
         <version>${revision}${sha1}${changelist}</version>
     </parent>

@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>onl.mdw</groupId>
-    <artifactId>mathcat4j-parent</artifactId>
+    <artifactId>mathcat4j-jni-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
     <packaging>pom</packaging>
     <name>MathCAT4J</name>
     <description>Java bindings for MathCAT</description>
-    <url>https://github.com/mwhapples/MathCAT4J</url>
+    <url>https://github.com/mwhapples/MathCAT4J-JNI</url>
     <inceptionYear>2022</inceptionYear>
     <licenses>
         <license>
@@ -25,9 +25,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/mwhapples/MathCAT4J.git</connection>
-        <developerConnection>scm:git:ssh://github.com:mwhapples/MathCAT4J.git</developerConnection>
-        <url>https://github.com/mwhapples/MathCAT4J</url>
+        <connection>scm:git:git://github.com/mwhapples/MathCAT4J-JNI.git</connection>
+        <developerConnection>scm:git:ssh://github.com:mwhapples/MathCAT4J-JNI.git</developerConnection>
+        <url>https://github.com/mwhapples/MathCAT4J-JNI</url>
     </scm>
     <properties>
         <revision>0.7.2-0</revision>
@@ -38,7 +38,6 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <modules>
-        <module>mathcat4j-api</module>
         <module>mathcat4j-core</module>
         <module>mathcat4j-jni</module>
         <module>mathcat4j-jni-loader-jna</module>
@@ -50,7 +49,7 @@
             <dependency>
                 <groupId>onl.mdw</groupId>
                 <artifactId>mathcat4j-api</artifactId>
-                <version>${project.version}</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>onl.mdw</groupId>
