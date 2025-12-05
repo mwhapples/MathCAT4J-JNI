@@ -30,9 +30,9 @@
         <url>https://github.com/mwhapples/MathCAT4J-JNI</url>
     </scm>
     <properties>
-        <revision>0.7.2-0</revision>
+        <revision>0.7.2-1</revision>
         <sha1/>
-        <changelist/>
+        <changelist>-SNAPSHOT</changelist>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
