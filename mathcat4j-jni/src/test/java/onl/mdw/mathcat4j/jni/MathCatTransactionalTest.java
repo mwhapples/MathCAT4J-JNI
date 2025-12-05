@@ -43,15 +43,13 @@ public class MathCatTransactionalTest {
     }
     @Test
     public void testSetMathmlReturnsMathml() {
-        String expected = """
-                 <math id='mkt-0'>
-                  <mrow id='mkt-1'>
-                    <mn id='mkt-2'>1</mn>
-                    <mo id='mkt-3'>+</mo>
-                    <mi id='mkt-4'>x</mi>
-                  </mrow>
-                 </math>
-                """;
+        String expected = " <math id='mkt-0'>\n" +
+                          "  <mrow id='mkt-1'>\n" +
+                          "    <mn id='mkt-2'>1</mn>\n" +
+                          "    <mo id='mkt-3'>+</mo>\n" +
+                          "    <mi id='mkt-4'>x</mi>\n" +
+                          "  </mrow>\n" +
+                          " </math>\n";
         String input = "<math id='mkt-0'><mrow id='mkt-1'><mn id='mkt-2'>1</mn><mo id='mkt-3'>+</mo><mi id='mkt-4'>x</mi></mrow></math>";
         assertThat(mathCat.<String>run(m -> m.setMathml(input))).isEqualTo(expected);
     }
@@ -127,19 +125,17 @@ public class MathCatTransactionalTest {
     }
     @Test
     public void testGetNavigationMathml() {
-        NavigationNode expected = new NavigationNode("""
-                 <math id='n1'>
-                  <mrow id='n2'>
-                    <mi id='n3'>y</mi>
-                    <mo id='n4'>=</mo>
-                    <mrow id='r0'>
-                      <mi id='n5'>x</mi>
-                      <mo id='n6'>+</mo>
-                      <mn id='n7'>2</mn>
-                    </mrow>
-                  </mrow>
-                 </math>
-                """, 0);
+        NavigationNode expected = new NavigationNode(" <math id='n1'>\n" +
+                                                     "  <mrow id='n2'>\n" +
+                                                     "    <mi id='n3'>y</mi>\n" +
+                                                     "    <mo id='n4'>=</mo>\n" +
+                                                     "    <mrow id='r0'>\n" +
+                                                     "      <mi id='n5'>x</mi>\n" +
+                                                     "      <mo id='n6'>+</mo>\n" +
+                                                     "      <mn id='n7'>2</mn>\n" +
+                                                     "    </mrow>\n" +
+                                                     "  </mrow>\n" +
+                                                     " </math>\n", 0);
         assertThat(mathCat.<NavigationNode>run(m -> {
             m.setMathml(BASIC_MATHML);
             return m.getNavigationMathml();
