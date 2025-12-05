@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>onl.mdw</groupId>
             <artifactId>mathcat4j-api</artifactId>
         </dependency>

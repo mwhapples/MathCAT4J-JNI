@@ -11,6 +11,7 @@ import onl.mdw.mathcat4j.api.MathCat;
 import onl.mdw.mathcat4j.api.NavigationId;
 import onl.mdw.mathcat4j.api.NavigationNode;
 import onl.mdw.mathcat4j.api.PositionRange;
+import org.jspecify.annotations.NonNull;
 
 /**
  * Java side API for the JNI bindings to MathCAT.
@@ -19,25 +20,25 @@ import onl.mdw.mathcat4j.api.PositionRange;
  */
 public abstract class MathCatJni implements MathCat {
     @Override
-    native public String getVersion();
+    native public @NonNull String getVersion();
     @Override
-    native public void setRulesDir(String dir);
+    native public void setRulesDir(@NonNull String dir);
     @Override
-    native public String getPreference(String name);
+    native public @NonNull String getPreference(@NonNull String name);
     @Override
-    native public void setPreference(String name, String value);
+    native public void setPreference(@NonNull String name, @NonNull String value);
     @Override
-    native public String setMathml(String mathmlStr);
+    native public @NonNull String setMathml(@NonNull String mathmlStr);
     @Override
-    native public String getNavigationBraille();
+    native public @NonNull String getNavigationBraille();
     @Override
-    native public String getBraille(String navigationId);
+    native public @NonNull String getBraille(@NonNull String navigationId);
     @Override
-    native public String getSpokenText();
+    native public @NonNull String getSpokenText();
     @Override
-    native public String getOverviewText();
+    native public @NonNull String getOverviewText();
     @Override
-    native public String doNavigateKeypress(
+    native public @NonNull String doNavigateKeypress(
         int key,
         boolean shiftKey,
         boolean controlKey,
@@ -46,21 +47,21 @@ public abstract class MathCatJni implements MathCat {
     );
 
     @Override
-    native public String doNavigateCommand(String command);
+    native public @NonNull String doNavigateCommand(@NonNull String command);
     @Override
-    native public NavigationNode getNavigationMathml();
+    native public @NonNull NavigationNode getNavigationMathml();
     @Override
-    native public NavigationId getNavigationMathmlId();
+    native public @NonNull NavigationId getNavigationMathmlId();
     @Override
-    native public void setNavigationNode(String id, int offset);
+    native public void setNavigationNode(@NonNull String id, int offset);
     @Override
-    native public PositionRange getBraillePosition();
+    native public @NonNull PositionRange getBraillePosition();
     @Override
-    native public NavigationNode getNavigationNodeFromBraillePosition(int position);
+    native public @NonNull NavigationNode getNavigationNodeFromBraillePosition(int position);
     @Override
     native public String[] getSupportedBrailleCodes();
     @Override
     native public String[] getSupportedLanguages();
     @Override
-    native public String[] getSupportedSpeechStyles(String lang);
+    native public String[] getSupportedSpeechStyles(@NonNull String lang);
 }

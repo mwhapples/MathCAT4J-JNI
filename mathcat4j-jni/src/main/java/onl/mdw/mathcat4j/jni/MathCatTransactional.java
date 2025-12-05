@@ -9,6 +9,7 @@ package onl.mdw.mathcat4j.jni;
 
 import onl.mdw.mathcat4j.api.MathCat;
 import onl.mdw.mathcat4j.api.MathCatManager;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Function;
 
@@ -31,7 +32,7 @@ public class MathCatTransactional implements MathCatManager {
      * @param <T> The type of the return value of the block.
      */
     @Override
-    public <T> T run(Function<? super MathCat, ? extends T> block) {
+    public <T> T run(@NonNull Function<? super MathCat, ? extends T> block) {
         synchronized (impl) {
             return block.apply(impl);
         }

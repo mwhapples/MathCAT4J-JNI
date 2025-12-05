@@ -161,7 +161,7 @@ public class MathCatTransactionalTest {
     @Test
     public void testGetSupportedLanguages() {
         String[] expected = new String[] {"de", "en", "en-gb", "es", "fi", "id", "nb", "sv", "vi", "zh-tw"};
-        assertThat(mathCat.<String[]>run(MathCat::getSupportedLanguages)).isEqualTo(expected);
+        assertThat(mathCat.run(MathCat::getSupportedLanguages)).isEqualTo(expected);
     }
     @Test
     public void testGetSupportedSpeechStyles() {
