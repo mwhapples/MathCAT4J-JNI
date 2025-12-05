@@ -32,7 +32,7 @@ public class MathCatTransactional implements MathCatManager {
      * @param <T> The type of the return value of the block.
      */
     @Override
-    public <T> T run(@NonNull Function<? super MathCat, ? extends T> block) {
+    public <T> T run(@NonNull Function<? super @NonNull MathCat, ? extends T> block) {
         synchronized (impl) {
             return block.apply(impl);
         }
