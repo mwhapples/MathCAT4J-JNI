@@ -5,11 +5,12 @@
  *
  * Copyright 2025 Michael Whapples
  */
-package onl.mdw.mathcat4j.jni;
+package onl.mdw.mathcat4j.jni.test;
 
 import onl.mdw.mathcat4j.api.MathCat;
 import onl.mdw.mathcat4j.api.NavigationId;
 import onl.mdw.mathcat4j.api.NavigationNode;
+import onl.mdw.mathcat4j.jni.MathCatTransactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

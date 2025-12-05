@@ -5,8 +5,10 @@
  *
  * Copyright 2025 Michael Whapples
  */
-package onl.mdw.mathcat4j.jni;
+package onl.mdw.mathcat4j.jni.test;
 
+import onl.mdw.mathcat4j.jni.MathCatFactory;
+import onl.mdw.mathcat4j.jni.MathCatTransactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -5,10 +5,11 @@
  *
  * Copyright 2025 Michael Whapples
  */
-package onl.mdw.mathcat4j.jni;
+package onl.mdw.mathcat4j.jni.test;
 
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
+import onl.mdw.mathcat4j.jni.LibraryLoader;
 import onl.mdw.mathcat4j.jni.libs.LibInfo;
 
 import java.io.File;
