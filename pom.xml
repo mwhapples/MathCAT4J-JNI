@@ -38,7 +38,6 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <modules>
-        <module>mathcat4j-core</module>
         <module>mathcat4j-jni</module>
         <module>mathcat4j-jni-loader-jna</module>
         <module>mathcat4j-jni-loader-jarjni</module>
