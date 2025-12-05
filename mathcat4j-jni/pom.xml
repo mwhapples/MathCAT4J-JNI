@@ -31,8 +31,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna-jpms</artifactId>
+            <groupId>org.questdb</groupId>
+            <artifactId>jar-jni</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
