@@ -32,7 +32,7 @@
     <properties>
         <revision>0.7.2-2</revision>
         <sha1/>
-        <changelist>-SNAPSHOT</changelist>
+        <changelist></changelist>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -54,7 +54,7 @@
             <dependency>
                 <groupId>onl.mdw</groupId>
                 <artifactId>mathcat4j-api</artifactId>
-                <version>1.0.3-SNAPSHOT</version>
+                <version>1.0.3</version>
             </dependency>
             <dependency>
                 <groupId>onl.mdw</groupId>
