@@ -15,7 +15,6 @@ import org.jspecify.annotations.NonNull;
 
 /**
  * Java side API for the JNI bindings to MathCAT.
- *
  * This exposes the MathCAT functions to JVM based applications. This does not deal with any thread safety or other concerns which will be dealt with by subclasses of this class.
  */
 public abstract class MathCatJni implements MathCat {
