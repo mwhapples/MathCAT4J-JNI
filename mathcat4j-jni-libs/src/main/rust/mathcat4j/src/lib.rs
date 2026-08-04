@@ -224,7 +224,7 @@ fn catch_unwind_to_exception<F: FnOnce() -> jobject + panic::UnwindSafe>(env: JN
     match result {
         Ok(s) => s,
         Err(_) => {
-            let _ = env.throw_new("onl/mdw/mathcat4j/api/PanicException", "Panic in MathCAT");
+            let _ = env.throw_new("java.lang.RuntimeException", "Panic in MathCAT");
             JObject::null().into_inner()
         }
     }
