@@ -8,7 +8,7 @@ authors = ["Michael Whapples"]
 crate-type = ["cdylib"]
 
 [dependencies]
-jni = "0.19.0"
+jni = "0.22.4"
 mathcat = { path = "../../../../../MathCAT" }
 
 [build-dependencies]
