@@ -156,15 +156,7 @@ fn jni_get_preference<'local>(
     name: JString,
 ) -> Result<JString<'local>, jni::errors::Error> {
     let name = name.to_string();
-    match get_preference(name) {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Unable to throw exception")),
-    }
+    new_string_result(env, get_preference(name))
 }
 
 fn jni_set_mathml<'local>(
@@ -173,30 +165,14 @@ fn jni_set_mathml<'local>(
     mathml_str: JString,
 ) -> Result<JString<'local>, jni::errors::Error> {
     let mathml_str = mathml_str.to_string();
-    match set_mathml(mathml_str) {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Cannot throw exception")),
-    }
+    new_string_result(env, set_mathml(mathml_str))
 }
 
 fn jni_get_navigation_braille<'local>(
     env: &mut Env<'local>,
     _this: JObject<'local>,
 ) -> Result<JString<'local>, jni::errors::Error> {
-    match get_navigation_braille() {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Cannot throw exception")),
-    }
+    new_string_result(env, get_navigation_braille())
 }
 
 fn jni_get_braille<'local>(
@@ -205,45 +181,21 @@ fn jni_get_braille<'local>(
     navigation_id: JString,
 ) -> Result<JString<'local>, jni::errors::Error> {
     let navigation_id = navigation_id.to_string();
-    match get_braille(navigation_id) {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Cannot throw exception")),
-    }
+    new_string_result(env, get_braille(navigation_id))
 }
 
 fn jni_get_spoken_text<'local>(
     env: &mut Env<'local>,
     _this: JObject<'local>,
 ) -> Result<JString<'local>, jni::errors::Error> {
-    match get_spoken_text() {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Cannot throw exception")),
-    }
+    new_string_result(env, get_spoken_text())
 }
 
 fn jni_get_overview_text<'local>(
     env: &mut Env<'local>,
     _this: JObject,
 ) -> Result<JString<'local>, jni::errors::Error> {
-    match get_overview_text() {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Cannot throw exception")),
-    }
+    new_string_result(env, get_overview_text())
 }
 
 fn jni_do_navigate_keypress<'local>(
@@ -255,21 +207,13 @@ fn jni_do_navigate_keypress<'local>(
     alt_key: jboolean,
     meta_key: jboolean,
 ) -> Result<JString<'local>, jni::errors::Error> {
-    match do_navigate_keypress(
+    new_string_result(env, do_navigate_keypress(
         key as usize,
         shift_key == JNI_TRUE,
         control_key == JNI_TRUE,
         alt_key == JNI_TRUE,
         meta_key == JNI_TRUE,
-    ) {
-        Ok(v) => env.new_string(v),
-        Err(e) => Err(env
-            .throw_new(
-                jni_str!("java/lang/RuntimeException"),
-                JNIString::new(errors_to_string(&e)),
-            )
-            .expect_err("Cannot throw exception")),
-    }
+    ))
 }
 
 fn jni_do_navigate_command<'local>(
@@ -367,6 +311,15 @@ fn jni_get_supported_speech_styles<'local>(
     new_string_array(env, get_supported_speech_styles(lang.to_string()))
 }
 
+fn new_string_result<'local>(
+    env: &mut Env<'local>,
+    result: Result<String, libmathcat::errors::Error>
+) -> Result<JString<'local>, jni::errors::Error> {
+    match result {
+        Ok(v) => env.new_string(v),
+        Err(e) => Err(env.throw_new(jni_str!("java/lang/RuntimeException"), JNIString::new(errors_to_string(&e))).unwrap_err())
+    }
+}
 fn new_string_array<'local>(
     env: &mut Env<'local>,
     vals: Vec<String>,
