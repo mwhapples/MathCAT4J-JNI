@@ -29,7 +29,7 @@ public class RulesDirTests {
         assertThatThrownBy(() -> mathCat.run(m -> {
             m.setRulesDir(invalidRulesDir);
             return null;
-        })).isInstanceOf(RuntimeException.class).hasMessageContaining(String.format("set_rules_dir: could not canonicalize path %s:", invalidRulesDir));
+        })).isInstanceOf(RuntimeException.class).hasMessageContaining(String.format("Unable to find MathCAT Rules directory '%s'", invalidRulesDir));
     }
     @Test
     public void testSetRulesDirValid() {

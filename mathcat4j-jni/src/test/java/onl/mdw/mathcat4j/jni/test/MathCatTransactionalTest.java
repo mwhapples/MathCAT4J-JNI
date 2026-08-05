@@ -14,8 +14,6 @@ import onl.mdw.mathcat4j.jni.MathCatTransactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,7 +30,9 @@ public class MathCatTransactionalTest {
     }
     @Test
     public void testGetVersion() {
-        String expected = Arrays.stream(System.getProperty("onl.mdw.mathcat4j.testVersion").split("-")).findFirst().orElseThrow();
+        final String versionPropertyValue = System.getProperty("onl.mdw.mathcat4j.testVersion");
+        final int endIndex = versionPropertyValue.lastIndexOf('-');
+        final String expected = endIndex >= 0 ? versionPropertyValue.substring(0, endIndex) : versionPropertyValue;
         assertThat(mathCat.run(MathCat::getVersion)).isEqualTo(expected);
     }
     @Test
@@ -152,12 +152,12 @@ public class MathCatTransactionalTest {
     }
     @Test
     public void testGetSupportedBrailleCodes() {
-        String[] expected = new String[] {"ASCIIMath", "ASCIIMath-fi", "CMU", "LaTeX", "Nemeth", "Swedish", "UEB", "Vietnam"};
+        String[] expected = new String[] {"ASCIIMath", "CMU", "LaTeX", "Nemeth", "Russian", "Swedish", "UEB", "Vietnam"};
         assertThat(mathCat.run(MathCat::getSupportedBrailleCodes)).isEqualTo(expected);
     }
     @Test
     public void testGetSupportedLanguages() {
-        String[] expected = new String[] {"de", "en", "en-gb", "es", "fi", "id", "nb", "sv", "vi", "zh-tw"};
+        String[] expected = new String[] {"de", "el", "en", "en-gb", "es", "fi", "fr", "hu", "id", "nb", "pl", "ru", "sv", "vi", "zh-tw"};
         assertThat(mathCat.run(MathCat::getSupportedLanguages)).isEqualTo(expected);
     }
     @Test

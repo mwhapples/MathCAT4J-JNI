@@ -322,14 +322,19 @@ fn new_string_result<'local>(
 }
 fn new_string_array<'local>(
     env: &mut Env<'local>,
-    vals: Vec<String>,
+    result: Result<Vec<String>, libmathcat::errors::Error>,
 ) -> Result<JObjectArray<'local, JString<'local>>, jni::errors::Error> {
-    let array = JObjectArray::<JString>::new(env, vals.len(), JString::null())?;
-    for i in 0..vals.len() {
-        let val = env.new_string(vals.index(i))?;
-        array.set_element(env, i, val)?;
+    match result {
+        Ok(vals) => {
+            let array = JObjectArray::<JString>::new(env, vals.len(), JString::null())?;
+            for i in 0..vals.len() {
+                let val = env.new_string(vals.index(i))?;
+                array.set_element(env, i, val)?;
+            }
+            Ok(array)
+        },
+        Err(e) => Err(env.throw_new(jni_str!("java/lang/RuntimeException"), JNIString::new(errors_to_string(&e))).unwrap_err())
     }
-    Ok(array)
 }
 const NAVIGATION_POSITION_CTOR_SIG: MethodSignature = jni_sig!((id: JString, jint) -> void);
 
