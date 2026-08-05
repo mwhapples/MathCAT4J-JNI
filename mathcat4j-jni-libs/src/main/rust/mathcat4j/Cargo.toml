@@ -12,4 +12,4 @@ jni = "0.22.4"
 mathcat = { path = "../../../../../MathCAT" }
 
 [build-dependencies]
-zip = { version = "2.1", default-features = false, features = ["bzip2"] }
+zip = { version = "8.6.0", default-features = false, features = ["bzip2"] }
