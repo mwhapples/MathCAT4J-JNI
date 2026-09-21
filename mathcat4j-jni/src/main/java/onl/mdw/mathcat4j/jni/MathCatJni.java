@@ -19,6 +19,8 @@ import org.jspecify.annotations.NonNull;
  */
 public abstract class MathCatJni implements MathCat {
     @Override
+    native public void addFileString(@NonNull String path, @NonNull String content);
+    @Override
     native public @NonNull String getVersion();
     @Override
     native public void setRulesDir(@NonNull String dir);

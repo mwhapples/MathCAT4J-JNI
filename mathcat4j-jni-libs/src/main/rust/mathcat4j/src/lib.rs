@@ -18,6 +18,11 @@ use std::ops::Index;
 const JNI_METHODS: &[NativeMethod] = &[
     native_method! {
         java_type = "onl.mdw.mathcat4j.jni.MathCatJni",
+        name = "addFileString",
+        extern fn jni_add_file_string(JString, JString),
+    },
+    native_method! {
+        java_type = "onl.mdw.mathcat4j.jni.MathCatJni",
         name = "getVersion",
         extern fn jni_get_version() -> JString,
     },
@@ -112,6 +117,18 @@ const JNI_METHODS: &[NativeMethod] = &[
         extern fn jni_get_supported_speech_styles(JString) -> JString[],
     },
 ];
+
+fn jni_add_file_string<'local>(
+    env: &mut Env<'local>,
+    _this: JObject<'local>,
+    path: JString,
+    content: JString,
+) -> Result<(), jni::errors::Error> {
+    let path = path.to_string();
+    let content = content.to_string();
+    libmathcat::shim_filesystem::add_in_memory_file(&path, &content);
+    Ok(())
+}
 
 fn jni_get_version<'local>(
     env: &mut Env<'local>,
