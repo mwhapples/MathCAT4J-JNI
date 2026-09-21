@@ -498,7 +498,7 @@ checksum = "0ceec5bc11778974d1bcb055b18002eba7f4b3518b6a0081b3af5f21666da9ad"
 
 [[package]]
 name = "mathcat"
-version = "0.7.6-beta.9"
+version = "0.7.6-rc.4"
 dependencies = [
  "anyhow",
  "bitflags 2.13.1",
@@ -514,7 +514,6 @@ dependencies = [
  "regex",
  "roman-numerals-rs",
  "strum",
- "strum_macros",
  "sxd-document-no-unsafe",
  "sxd-xpath-no-unsafe",
  "unicode-script",
@@ -849,6 +848,9 @@ name = "strum"
 version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9628de9b8791db39ceda2b119bbe13134770b56c138ec1d3af810d045c04f9bd"
+dependencies = [
+ "strum_macros",
+]
 
 [[package]]
 name = "strum_macros"
